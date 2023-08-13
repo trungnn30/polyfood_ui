@@ -1,0 +1,15 @@
+.subcribe-wrap h1 {
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.subcribe-wrap input {
+    height: 46px;
+    text-align: center;
+    color: #333;
+    border: none;
+    border-bottom: 2px solid #e2e2e2;
+    background: transparent;
+    outline: none;
+    width: 100%;
+}

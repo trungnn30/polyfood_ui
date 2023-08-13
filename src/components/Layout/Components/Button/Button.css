@@ -1,0 +1,77 @@
+.wrapper {
+    cursor: pointer;
+    display: inline-flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    border: none;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease 0s;
+}
+
+.primaryHover:hover {
+    color: #fb2c39;
+}
+
+.primary {
+    background-color: #6eab49;
+    color: #fff;
+    padding: 16px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrapper span {
+    z-index: 2;
+}
+
+.primary::after,
+.primary::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #fb2c39;
+    /* z-index: -1; */
+}
+
+.primary::before {
+    transform: translateX(-100%);
+    z-index: 0;
+}
+
+.primary:hover:before {
+    transform: translateX(0);
+    transition: transform 350ms ease;
+}
+
+.primary::after {
+    transform: translateX(100%);
+    transition: none;
+    transition: transform 350ms ease;
+    z-index: 0;
+}
+
+.primary:hover:after {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 350ms 360ms ease;
+}
+
+.primarySubcribe {
+    background-color: #6eab49;
+    color: #fff;
+    padding: 16px 55px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease 0s;
+}
+
+.primarySubcribe:hover {
+    background: #fb2c39;
+}

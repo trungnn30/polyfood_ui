@@ -1,0 +1,11 @@
+.slide-swiper-wrap {
+    overflow: hidden;
+    height: 750px;
+}
+
+.bg-img {
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 750px;
+}

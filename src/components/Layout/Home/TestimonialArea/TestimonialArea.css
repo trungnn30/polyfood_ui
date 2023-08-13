@@ -1,0 +1,19 @@
+.single-testimonial > p {
+    font-size: 16px;
+    font-style: italic;
+    color: #575757;
+    line-height: 32px;
+    font-weight: 500;
+}
+
+.client-info p {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #575757;
+    font-weight: 500;
+}
+
+.client-info span {
+    color: #575757;
+    font-weight: 500;
+}

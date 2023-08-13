@@ -1,0 +1,11 @@
+.funfact-container {
+    width: 1200px;
+}
+
+.funfact-img {
+    width: 100%;
+}
+
+.funfact-content p {
+    font-size: 48px;
+}
