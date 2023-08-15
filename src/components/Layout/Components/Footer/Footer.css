@@ -1,0 +1,18 @@
+.footer-title {
+    font-size: 16px;
+    color: #313131;
+}
+
+.subcribe-footer input {
+    height: 46px;
+    color: #333;
+    border: none;
+    border-bottom: 2px solid #e2e2e2;
+    background: transparent;
+    outline: none;
+    width: 100%;
+}
+
+.btn-footer {
+    border-bottom: 2px solid #9b9b9c;
+}

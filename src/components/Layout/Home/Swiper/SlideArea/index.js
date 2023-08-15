@@ -7,7 +7,7 @@ import './SlideArea.css';
 
 function SlideArea() {
     return (
-        <div className="slide-swiper-wrap">
+        <div className="slide-swiper-wrap px-70">
             <Swiper
                 modules={[Autoplay, Navigation, EffectFade]}
                 slidesPerView={1}

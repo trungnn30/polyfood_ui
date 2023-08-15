@@ -5,7 +5,7 @@ import Timer from './Timer';
 
 function FunfactArea() {
     return (
-        <div className="funfact-area py-45">
+        <div className="funfact-area py-45 px-70">
             <div className="funfact-container mx-auto">
                 <Row gutter={[32, 16]}>
                     <Col xs={12} lg={12} md={24} sm={24}>

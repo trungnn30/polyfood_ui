@@ -6,20 +6,20 @@ import SubcribeArea from '../../components/Layout/Home/SubcribeArea';
 import SupportArea from '../../components/Layout/Home/SupportArea';
 import SlideArea from '../../components/Layout/Home/Swiper/SlideArea';
 import TestimonialArea from '../../components/Layout/Home/TestimonialArea';
+import { FloatButton } from 'antd';
 
 function HomePage() {
     return (
         <>
-            <div className="container px-70">
-                <HomeHeader />
-                <SlideArea />
-                <SupportArea />
-                <BannerArea />
-                <FunfactArea />
-                <TestimonialArea />
-                <SubcribeArea />
-                <FooterArea />
-            </div>
+            <HomeHeader />
+            <SlideArea />
+            <SupportArea />
+            <BannerArea />
+            <FunfactArea />
+            <TestimonialArea />
+            <SubcribeArea />
+            <FooterArea />
+            <FloatButton.BackTop />
         </>
     );
 }

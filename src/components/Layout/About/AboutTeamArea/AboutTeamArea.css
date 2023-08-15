@@ -1,0 +1,57 @@
+.about-team-area h1 {
+    position: relative;
+}
+
+.about-team-area h1::after {
+    position: absolute;
+    background-color: #070508;
+    height: 2px;
+    width: 100px;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+.about-team-img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.about-team-wrap {
+    position: relative;
+}
+
+.about-team-wrap p {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px 10px 23px;
+    background: #f5f5f5;
+}
+
+.team-action {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #fff none repeat scroll 0 0;
+    opacity: 0;
+    top: 40%;
+}
+
+.about-team-wrap:hover .team-action {
+    opacity: 1;
+    transform: translateY(-50%);
+    transition: all 0.6s ease 0s;
+    z-index: 2;
+}
+
+.team-action-icon {
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.team-action-icon:hover {
+    cursor: pointer;
+    color: #fb2c39;
+}

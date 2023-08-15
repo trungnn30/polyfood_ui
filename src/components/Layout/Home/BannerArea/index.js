@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 
 function BannerArea() {
     return (
-        <div className="banner-area py-45">
+        <div className="banner-area py-45 px-70">
             <div className="text-align-center">
                 <p className='mb-20'>SẢN PHẨM TIÊU BIỂU</p>
                 <Row justify="space-between" gutter={[32, 16]}>

@@ -9,10 +9,12 @@
     font-size: 15px;
     letter-spacing: 0.8px;
     transition: all 0.3s ease 0s;
+    color: #555252;
 }
 
 .primaryHover:hover {
     color: #fb2c39;
+    border-color: #fb2c39;
 }
 
 .primary {
@@ -74,4 +76,24 @@
 
 .primarySubcribe:hover {
     background: #fb2c39;
+}
+
+.tag {
+    line-height: 1;
+    display: inline-block;
+    padding: 9px 17px 12px;
+    text-transform: capitalize;
+    color: #424242;
+    border: none;
+    border-radius: 50px;
+    background: none;
+    background-color: #f6f6f6;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 14px;
+}
+
+.tag:hover {
+    color: #fff;
+    background-color: #fb2c39;
 }

@@ -1,0 +1,25 @@
+.welcome-area {
+    width: 66%;
+}
+
+.welcome-area h1 {
+    position: relative;
+}
+
+.welcome-area h1::after {
+    position: absolute;
+    background-color: #070508;
+    height: 3px;
+    width: 70px;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+.welcome-content {
+    font-size: 16px;
+    color: #4b4b4b;
+    line-height: 30px;
+}

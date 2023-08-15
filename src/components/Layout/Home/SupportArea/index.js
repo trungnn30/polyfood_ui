@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 
 function SupportArea() {
     return (
-        <div className="support-area py-45">
+        <div className="support-area py-45 px-70">
             <Row className="text-align-center mt-16" justify="space-between" gutter={[16, 16]}>
                 <Col xs={8} lg={8} md={24} sm={24}>
                     <div

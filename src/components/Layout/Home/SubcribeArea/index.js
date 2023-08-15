@@ -4,7 +4,7 @@ import { Col, Row } from 'antd';
 
 function SubcribeArea() {
     return (
-        <div className="subcribe-area py-45">
+        <div className="subcribe-area py-45 px-70">
             <Row>
                 <Col xs={10} lg={10} md={10} sm={10} className="mx-auto text-align-center">
                     <div className="subcribe-wrap">

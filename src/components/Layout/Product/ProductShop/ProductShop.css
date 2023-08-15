@@ -1,0 +1,32 @@
+.select-shopping-wrap {
+    min-width: 300px;
+}
+
+.tab-icon {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.product-img {
+    width: 100%;   
+}
+
+.default-img {
+    width: 100%;
+    object-fit: cover;
+    height: 210px;
+}
+
+.product-content .product-name {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.product-price .new-price {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.rating-icon {
+    font-size: 16px;
+}

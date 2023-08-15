@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CommonStyle from './CommonStyle';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <CommonStyle>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </CommonStyle>,
 );
 

@@ -4,7 +4,7 @@ import TestimonialSwiper from '../Swiper/TestimonialSwiper';
 
 function TestimonialArea() {
     return (
-        <div className="testimonial-area py-45">
+        <div className="testimonial-area py-45 px-70">
             <div
                 style={{
                     background: '#f7f7f7',

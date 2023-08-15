@@ -10,7 +10,7 @@ import {
 
 function FooterArea() {
     return (
-        <div className="footer-area text-align-center mt-20">
+        <div className="footer-area text-align-center mt-20 px-70">
             <div className="footer-top" style={{ background: '#f6f6f6', padding: '80px 0 60px' }}>
                 <div className="footer-top-wrap">
                     <img src="./assets/img/GSlogo.png" alt="" style={{ width: '250px' }} className="mb-40" />
