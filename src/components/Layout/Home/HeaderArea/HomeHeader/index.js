@@ -1,4 +1,3 @@
-import './HomeHeader.css';
 import {
     RocketFilled,
     SearchOutlined,
@@ -8,9 +7,14 @@ import {
     SwapOutlined,
     DownOutlined,
 } from '@ant-design/icons';
+import { useEffect } from 'react';
+import { Dropdown, Space, Input } from 'antd';
+
 import ButtonComponent from '../../../Components/Button';
 import NavHeader from '../NavHeader';
-import { useEffect } from 'react';
+import './HomeHeader.css';
+
+const { Search } = Input;
 
 function HomeHeader() {
     useEffect(() => {
@@ -25,6 +29,28 @@ function HomeHeader() {
         const scrollTop = window.scrollY;
         scrollTop >= 250 ? header.classList.add('is-sticky') : header.classList.remove('is-sticky');
     };
+
+    const items = [
+        {
+            key: '1',
+            label: (
+                <ButtonComponent primaryHover to={'/login-register'}>
+                    Đăng nhập
+                </ButtonComponent>
+            ),
+        },
+    ];
+
+    // const findItems = [
+    //     {
+    //         key: '2',
+    //         label: (
+    //             <div>
+    //                 <Search size="large" enterButton />
+    //             </div>
+    //         ),
+    //     },
+    // ];
     return (
         <div className="header-area">
             <div className="home-header-top px-70">
@@ -62,14 +88,45 @@ function HomeHeader() {
                                 <nav>
                                     <ul className="d-flex">
                                         <li>
-                                            <ButtonComponent primaryHover className="lh-74 icon">
+                                            {/* <Dropdown
+                                                menu={{ findItems }}
+                                                trigger={['click']}
+                                                placement="bottomRight"
+                                                arrow
+                                            >
+                                                <ButtonComponent
+                                                    primaryHover
+                                                    onClick={(e) => e.preventDefault()}
+                                                    className="lh-74 icon"
+                                                >
+                                                    <SearchOutlined />
+                                                </ButtonComponent>
+                                            </Dropdown> */}
+                                            <ButtonComponent
+                                                primaryHover
+                                                onClick={(e) => e.preventDefault()}
+                                                className="lh-74 icon"
+                                            >
                                                 <SearchOutlined />
                                             </ButtonComponent>
                                         </li>
                                         <li>
-                                            <ButtonComponent primaryHover className="lh-74 icon">
-                                                <UserOutlined />
-                                            </ButtonComponent>
+                                            <Dropdown
+                                                menu={{ items }}
+                                                trigger={['click']}
+                                                placement="bottomRight"
+                                                arrow
+                                            >
+                                                <ButtonComponent
+                                                    primaryHover
+                                                    onClick={(e) => e.preventDefault()}
+                                                    className="lh-74 icon"
+                                                >
+                                                    <Space>
+                                                        <UserOutlined />
+                                                    </Space>
+                                                </ButtonComponent>
+                                            </Dropdown>
                                         </li>
                                         <li>
                                             <ButtonComponent primaryHover className="lh-74 icon">

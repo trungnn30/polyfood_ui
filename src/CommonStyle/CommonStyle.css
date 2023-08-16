@@ -33,6 +33,10 @@ body, p, span {
 }
 
 /* Padding */
+.p-80 {
+    padding: 80px;
+}
+
 .pl-0 {
     padding-left: 0px !important;
 }
@@ -114,6 +118,10 @@ body, p, span {
 
 .mt-25 {
     margin-top: 25px;
+}
+
+.mt-40 {
+    margin-top: 40px;
 }
 
 .mb-5 {

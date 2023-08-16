@@ -1,0 +1,38 @@
+.shop-area .pagination {
+    display: inline-flex;
+}
+
+.pagination .previous,
+.pagination .next {
+    visibility: hidden;
+}
+
+.pagination li {
+    margin: 0 4px;
+}
+
+.pagination li a:hover,
+.pagination .selected > a {
+    border-color: #fb2c39;
+    background-color: #fb2c39;
+    color: #fff;
+    box-shadow: 0 0 12px 0.8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+.pagination li a {
+    border-color: #fb2c39;
+    background-color: #fb2c39;
+    font-size: 16px;
+    line-height: 43px;
+    display: inline-block;
+    width: 43px;
+    height: 43px;
+    padding: 0;
+    text-align: center;
+    color: #fb2c39;
+    border: none;
+    border-radius: 100% !important;
+    background: none;
+    box-shadow: 0 0 12px 0.8px rgba(0, 0, 0, 0.1);
+}

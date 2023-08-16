@@ -1,0 +1,7 @@
+.login-register-area .ant-tabs-tab-btn {
+    font-size: 24px;
+}
+
+.login-register-area .ant-tabs-nav::before {
+    border-bottom: none;
+}

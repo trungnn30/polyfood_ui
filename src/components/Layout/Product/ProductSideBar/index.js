@@ -1,9 +1,12 @@
 import ButtonComponent from '../../Components/Button';
 import { Space, Checkbox, Input } from 'antd';
 import './ProductSideBar.css';
+import { useState } from 'react';
 const { Search } = Input;
 
-function ProductSideBar() {
+function ProductSideBar({ products }) {
+    const [search, setSearch] = useState('');
+    const [product, setProduct] = useState(products);
     const options = [
         {
             label: 'Tất Cả Danh Mục',
@@ -29,13 +32,32 @@ function ProductSideBar() {
     const onChange = (values) => {
         console.log('checked = ', values);
     };
+    let [filterData] = useState();
+    const handleChange = (e) => {
+        setSearch(e.target.value);
+        if (e.target.value === '') {
+            setProduct(products);
+        }
+    };
+    const handleSearch = () => {
+        filterData = product.filter((value) => {
+            return value.name.toLowerCase().includes(search.toLocaleLowerCase());
+        });
+        console.log(filterData);
+    };
     return (
         <div className="sidebar">
             <div className="sidebar-widget">
                 <p>Tìm kiếm sản phẩm</p>
                 <div className="sidebar-search mb-50 mt-25">
                     <Space direction="vertical">
-                        <Search placeholder="Nhập tên sản phẩm" allowClear size="large" />
+                        <Search
+                            onChange={handleChange}
+                            onSearch={handleSearch}
+                            placeholder="Nhập tên sản phẩm"
+                            allowClear
+                            size="large"
+                        />
                     </Space>
                 </div>
             </div>

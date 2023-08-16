@@ -5,8 +5,10 @@
 .about-banner-img {
     width: 100%;
     transition: all 0.5s ease 0s;
+    object-fit: cover;
+    vertical-align: middle;
 }
-    
+
 .about-banner-img:hover {
     transform: scale(1.2);
 }

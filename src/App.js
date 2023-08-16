@@ -6,6 +6,8 @@ import ShopPage from './pages/Shop';
 import BlogPage from './pages/Blog';
 import ContactPage from './pages/Contact';
 import ShopDetails from './pages/ShopDetail';
+import LoginRegisterPage from './pages/LoginRegister';
+
 
 function App() {
     return (
@@ -16,6 +18,7 @@ function App() {
             <Route path='/shop/:id' element={<ShopDetails />}></Route>
             <Route path='/blog' element={<BlogPage />}></Route>
             <Route path='/contact' element={<ContactPage />}></Route>
+            <Route path='/login-register' element={<LoginRegisterPage />}></Route>
         </Routes>
     );
 }

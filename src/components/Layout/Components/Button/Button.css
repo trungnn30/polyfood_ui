@@ -97,3 +97,32 @@
     color: #fff;
     background-color: #fb2c39;
 }
+
+.loginRegister {
+    background-color: #f2f2f2;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 11px 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+.loginRegister:hover {
+    background-color: #fb2c39;
+    color: #fff;
+}
+
+.productAction {
+    background-color: #fb2c39;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+}
+
+.productAction:hover {
+    background-color: #000;
+}
