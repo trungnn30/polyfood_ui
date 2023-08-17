@@ -50,6 +50,7 @@
 .team-action-icon {
     font-size: 24px;
     border-radius: 10px;
+    transition: all 0.3s ease 0s;
 }
 
 .team-action-icon:hover {

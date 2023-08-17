@@ -6,7 +6,7 @@ import Register from './Register';
 
 function LoginRegister() {
     return (
-        <div className="login-register-area pt-100">
+        <div className="login-register-area py-100">
             <Tabs
                 centered
                 items={[

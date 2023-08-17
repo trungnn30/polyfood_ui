@@ -11,8 +11,21 @@ body {
     background: #fff;
 }
 
-body, p, span {
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+span {
     font-family: Be Vietnam Pro, sans-serif;
+}
+
+/* Container */
+.container {
+    width: 1200px;
+    margin: 0 auto;
 }
 
 /* font-size */
@@ -99,6 +112,11 @@ body, p, span {
     padding-bottom: 45px;
 }
 
+.py-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 /* Margin */
 .mt-5 {
     margin-top: 5px;
@@ -166,6 +184,14 @@ body, p, span {
 
 .mr-5 {
     margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mr-20 {
+    margin-right: 20px;
 }
 
 .mx-auto {
@@ -244,12 +270,15 @@ body, p, span {
     text-align: center;
 }
 
+.text-align-left {
+    text-align: left;
+}
+
 .text-align-justify {
     text-align: justify;
 }
 
-/* Container */
-.container {
-    width: 1200px;
-    margin: 0 auto;
+/* Transition */
+img {
+    transition: all 0.3s ease 0s;
 }

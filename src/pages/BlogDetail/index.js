@@ -1,19 +1,19 @@
 import Header from '../../components/Layout/Components/Header';
 import FooterArea from '../../components/Layout/Components/Footer';
 import BreadCrumbArea from '../../components/Layout/BreadCrumb';
-import ProductDetails from '../../components/Layout/Product/ProductDetails';
+import BlogStandardDetails from "../../components/Layout/Blog/BlogStandardDetails";
 import { FloatButton } from 'antd';
 
-function ShopDetail() {
+function BlogDetail() {
     return (
         <>
             <Header />
-            <BreadCrumbArea page={'CHI TIẾT SẢN PHẨM'} />
-            <ProductDetails />
+            <BreadCrumbArea page={'BLOG POST'} />
+            <BlogStandardDetails />
             <FooterArea />
             <FloatButton.BackTop />
         </>
     );
 }
 
-export default ShopDetail;
+export default BlogDetail;

@@ -7,7 +7,7 @@ import { Form, Input } from 'antd';
 function Register() {
     return (
         <div className="tab-content">
-            <div className="register-form-container mt-40 pb-90">
+            <div className="register-form-container mt-40">
                 <Row>
                     <Col xs={8} lg={8} md={12} sm={12} className="mx-auto">
                         <Form

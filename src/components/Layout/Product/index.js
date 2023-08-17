@@ -51,9 +51,9 @@ function Product() {
         setProduct(filterData);
     };
     return (
-        <div className="product-area">
+        <div className="product-area py-100">
             <div className="container">
-                <div className="product-wrap pt-100 pb-70">
+                <div className="product-wrap">
                     <Row>
                         <Col xs={6}>
                             <div className="sidebar">

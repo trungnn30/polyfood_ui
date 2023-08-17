@@ -1,0 +1,64 @@
+.blog-details-wrap h1 {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: #433f3f;
+    display: inline-block;
+    margin: 8px 0 30px;
+    padding: 0 0 23px;
+    line-height: 1;
+    position: relative;
+}
+
+.blog-details-wrap h1::after {
+    position: absolute;
+    background-color: #070508;
+    height: 3px;
+    width: 70px;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+}
+
+.blog-details-wrap h4 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.blog-details-wrap h5 {
+    font-weight: 500;
+    font-size: 16px;
+    color: #666;
+    letter-spacing: 0.3px;
+}
+
+.blog-details-img {
+    width: 100%;
+}
+
+.blog-details-img img {
+    width: 70%;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+
+.blog-details-comments .ant-comment-avatar img {
+    width: 100%;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+.btn-submit {
+    background-color: #fb2c39;
+    color: #fff;
+    padding: 16px 30px;
+    transition: all 0.4s ease 0s;
+}
+
+.btn-submit:hover {
+    background-color: #000;
+}

@@ -7,7 +7,7 @@ import { Form, Input } from 'antd';
 function Login() {
     return (
         <div className="tab-content">
-            <div className="login-form-container mt-40 pb-90">
+            <div className="login-form-container mt-40">
                 <Row>
                     <Col xs={8} lg={8} md={24} sm={24} className="mx-auto">
                         <Form
