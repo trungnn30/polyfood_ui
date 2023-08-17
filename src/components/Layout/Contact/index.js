@@ -23,7 +23,7 @@ function Contact() {
     };
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: '50fc832a24msh733f99e15e65d5cp1c205ejsnca4b5ee9289d',
+        googleMapsApiKey: '',
     });
 
     if (!isLoaded) return <div>...Loading</div>;
