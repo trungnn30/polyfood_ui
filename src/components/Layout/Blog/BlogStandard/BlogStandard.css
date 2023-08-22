@@ -54,5 +54,5 @@
 
 .blog-social-icon:hover {
     cursor: pointer;
-    color: #fb2c39;
+    color: var(--primary-color);
 }

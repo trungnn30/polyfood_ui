@@ -54,5 +54,5 @@
 }
 
 .btn-submit-2:hover {
-    background-color: #fb2c39;
+    background-color: var(--primary-color);
 }

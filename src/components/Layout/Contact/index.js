@@ -38,7 +38,7 @@ function Contact() {
                         </GoogleMap>
                     </div>
                     <div className="contact-info">
-                        <Row gutter={[32, 16]}>
+                        <Row gutter={[32, 16]} >
                             <Col xs={8} lg={8} md={24} sm={24}>
                                 <div className="contact-info-wrap">
                                     <div className="single-contact-info mb-40">

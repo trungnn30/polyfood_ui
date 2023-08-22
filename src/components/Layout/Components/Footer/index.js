@@ -1,3 +1,4 @@
+import { FacebookOutlined, InstagramOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons';
 import ButtonComponent from '../../Components/Button';
 import './Footer.css';
 import { Col, Row } from 'antd';
@@ -8,104 +9,92 @@ function FooterArea() {
         <div className="footer-area pt-100 pb-70" style={{ backgroundColor: '#f7f7f7' }}>
             <div className="container">
                 <Row gutter={[32]}>
-                    <Col xs={4} lg={4} md={24} sm={24}>
-                        <img src="/assets/img/GSlogo.png" alt="" style={{ width: '100%' }} />
+                    <Col xs={6} lg={6} md={24} sm={24} className="text-align-center">
+                        <img src="/assets/img/GSlogo.png" alt="" style={{ width: '80%' }} />
                         <p
                             style={{
                                 letterSpacing: '0.9px',
                                 color: '313131',
                                 lineHeight: '24px',
                             }}
+                            className="text-light"
                         >
-                            Poly Food - © FPT Polytechnic Hà Nội
+                            Poly Food là nhà hàng Thuần chay và Cung cấp thực phẩm chay
                         </p>
                     </Col>
                     <Col xs={4} lg={4} md={24} sm={24}>
-                        <div>
-                            <p className="footer-title mb-10">Giới thiệu</p>
+                        <div className='ml-30'>
+                            <p className="footer-title mb-10 text-light">Cửa hàng</p>
                             <ul>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Giới thiệu
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
+                                        Về chúng tôi
                                     </ButtonComponent>
                                 </li>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Địa chỉ
-                                    </ButtonComponent>
-                                </li>
-                                <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
                                         Liên hệ
                                     </ButtonComponent>
                                 </li>
-                            </ul>
-                        </div>
-                    </Col>
-                    <Col xs={4} lg={4} md={24} sm={24}>
-                        <div>
-                            <p className="footer-title mb-10">Liên kết</p>
-                            <ul>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Returns
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
+                                        Tin tức
                                     </ButtonComponent>
                                 </li>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Support Policy
-                                    </ButtonComponent>
-                                </li>
-                                <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Size guide
-                                    </ButtonComponent>
-                                </li>
-                                <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        FAQs
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
+                                        Hỗ trợ
                                     </ButtonComponent>
                                 </li>
                             </ul>
                         </div>
                     </Col>
-                    <Col xs={4} lg={4} md={24} sm={24}>
-                        <div>
-                            <p className="footer-title mb-10">Theo dõi</p>
+                    <Col xs={6} lg={6} md={24} sm={24}>
+                        <div className='ml-30'>
+                            <p className="footer-title mb-10 text-light">Chính sách mua hàng</p>
                             <ul>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Facebook
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
+                                        Điều khoản
                                     </ButtonComponent>
                                 </li>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Twitter
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10 text-light">
+                                        Chính sách & Bảo mật
                                     </ButtonComponent>
                                 </li>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Instagram
-                                    </ButtonComponent>
+                                    <h4 className="text-light my-10">Theo dõi chúng tôi</h4>
                                 </li>
                                 <li>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0 my-10">
-                                        Youtube{' '}
-                                    </ButtonComponent>
+                                    <div className="footer-list">
+                                        <ButtonComponent primaryHover className="pl-0 pr-0 my-10 mr-10 text-light">
+                                            <FacebookOutlined />
+                                        </ButtonComponent>
+                                        <ButtonComponent primaryHover className="pl-0 pr-0 my-10 mr-10 text-light">
+                                            <YoutubeOutlined />
+                                        </ButtonComponent>
+                                        <ButtonComponent primaryHover className="pl-0 pr-0 my-10 mr-10 text-light">
+                                            <TwitterOutlined />
+                                        </ButtonComponent>
+                                        <ButtonComponent primaryHover className="pl-0 pr-0 my-10 mr-10 text-light">
+                                            <InstagramOutlined />
+                                        </ButtonComponent>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
                     </Col>
                     <Col xs={8} lg={8} md={24} sm={24}>
-                        <div className="subcribe-footer">
-                            <p className="footer-title mb-20">Đăng ký</p>
-                            <p className="mb-20" style={{ color: '#7a7a7a' }}>
+                        <div className="subcribe-footer ml-30">
+                            <p className="footer-title mb-20 text-light">Đăng ký</p>
+                            <p className="mb-20 text-light" style={{ color: '#7a7a7a' }}>
                                 Nhận thông báo mới nhất qua email về những tin tức của chúng tôi
                             </p>
                             <p className="mb-20">
                                 <input type="email" placeholder="Nhập email của bạn" />
                             </p>
-                            <ButtonComponent primaryHover className="pl-0 pr-0 btn-footer">
+                            <ButtonComponent primaryHover className="pl-0 pr-0 btn-footer text-light">
                                 ĐĂNG KÝ
                             </ButtonComponent>
                         </div>

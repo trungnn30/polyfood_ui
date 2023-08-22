@@ -1,14 +1,14 @@
-import './Product.css';
 import { Col, Row } from 'antd';
+import { useMemo, useState } from 'react';
+import { Space, Radio, Input } from 'antd';
+
 import productItems from './Product';
-import { useState } from 'react';
 import Pagination from '../Components/Pagination';
-import ButtonComponent from '../Components/Button';
-import { Space, Checkbox, Input } from 'antd';
-import './ProductSideBar/ProductSideBar.css';
+import './Product.css';
 const { Search } = Input;
 
 function Product() {
+    let [filterData, setFilterData] = useState();
     const [products, setProduct] = useState(productItems);
     const [search, setSearch] = useState('');
     const options = [
@@ -33,23 +33,56 @@ function Product() {
             value: 'Món Cơm',
         },
     ];
-    const onChange = (values) => {
-        console.log('checked = ', values);
-    };
-    let [filterData] = useState();
+    const tags = [
+        {
+            id: 1,
+            value: 'Tất Cả Danh Mục',
+        },
+        {
+            id: 2,
+            value: 'Món Chay Mặn',
+        },
+        {
+            id: 3,
+            value: 'Hàng Chay Cấp Đông',
+        },
+        {
+            id: 4,
+            value: 'Món Nộm',
+        },
+        {
+            id: 5,
+            value: 'Món Cơm',
+        },
+    ];
+
     const handleChange = (e) => {
         setSearch(e.target.value);
         if (e.target.value === '') {
             setProduct(productItems);
         }
     };
+
     const handleSearch = () => {
         filterData = products.filter((value) => {
             return value.name.toLowerCase().includes(search.toLocaleLowerCase());
         });
-        console.log(filterData);
         setProduct(filterData);
     };
+
+    const getFilteredList = () => {
+        if (!filterData || filterData === 'Tất Cả Danh Mục') {
+            return products;
+        }
+        return products.filter((product) => product.tag === filterData);
+    };
+
+    var filteredList = useMemo(getFilteredList, [filterData, products]);
+
+    const handleClick = (e) => {
+        setFilterData(e.target.value);
+    };
+
     return (
         <div className="product-area py-100">
             <div className="container">
@@ -73,29 +106,36 @@ function Product() {
                                 </div>
                                 <div className="sidebar-widget">
                                     <p>Theo Danh Mục</p>
-                                    <Checkbox.Group options={options} onChange={onChange} className="mb-50 mt-25" />
+                                    <Radio.Group onChange={handleClick} className="mb-50 mt-25">
+                                        <Space direction="vertical">
+                                            {options.map((option, id) => (
+                                                <Radio key={id} value={option.value}>{option.value}</Radio>
+                                            ))}
+                                        </Space>
+                                    </Radio.Group>
                                 </div>
                                 <div className="sidebar-widget">
                                     <p>Nhãn</p>
                                     <ul className="mb-50 mt-25">
-                                        <li>
-                                            <ButtonComponent tag>Món Chay Mặn</ButtonComponent>
-                                        </li>
-                                        <li>
-                                            <ButtonComponent tag>Hàng Chay Cấp Đông</ButtonComponent>
-                                        </li>
-                                        <li>
-                                            <ButtonComponent tag>Món Nộm</ButtonComponent>
-                                        </li>
-                                        <li>
-                                            <ButtonComponent tag>Món Cơm</ButtonComponent>
-                                        </li>
+                                        {tags.map((tag) => (
+                                            <li key={tag.id}>
+                                                <input
+                                                    type="button"
+                                                    value={tag.value}
+                                                    onClick={handleClick}
+                                                    className="tag"
+                                                />
+                                                {/* <ButtonComponent tag onClick={handleClick} value={tag.value}>
+                                                    {tag.value}
+                                                </ButtonComponent> */}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
                         </Col>
                         <Col xs={18}>
-                            <Pagination itemsPerPage={9} products={products} />
+                            <Pagination itemsPerPage={9} products={filteredList} />
                         </Col>
                     </Row>
                 </div>

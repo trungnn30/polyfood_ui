@@ -12,10 +12,6 @@ function TestimonialSwiper() {
                 autoplay={{
                     delay: 3000,
                 }}
-                // pagination={{
-                //     clickable: true,
-                // }}
-                // navigation={true}
                 loop={true}
             >
                 <SwiperSlide>

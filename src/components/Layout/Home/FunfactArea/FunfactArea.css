@@ -2,10 +2,16 @@
     width: 1200px;
 }
 
+.funfact-deals-img {
+    width: 70%;
+    margin: 0 auto;
+}
+
 .funfact-img {
     width: 100%;
 }
 
 .funfact-content p {
     font-size: 48px;
+    font-weight: 600;
 }

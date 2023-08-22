@@ -12,9 +12,9 @@
     color: #555252;
 }
 
-.primaryHover:hover {
-    color: #fb2c39;
-    border-color: #fb2c39;
+.primaryHover:hover span {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .primary {
@@ -38,7 +38,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    background: #fb2c39;
+    background: var(--primary-color);
     /* z-index: -1; */
 }
 
@@ -75,27 +75,7 @@
 }
 
 .primarySubcribe:hover {
-    background: #fb2c39;
-}
-
-.tag {
-    line-height: 1;
-    display: inline-block;
-    padding: 9px 17px 12px;
-    text-transform: capitalize;
-    color: #424242;
-    border: none;
-    border-radius: 50px;
-    background: none;
-    background-color: #f6f6f6;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-    font-size: 14px;
-}
-
-.tag:hover {
-    color: #fff;
-    background-color: #fb2c39;
+    background: var(--primary-color);
 }
 
 .loginRegister {
@@ -112,12 +92,12 @@
 }
 
 .loginRegister:hover {
-    background-color: #fb2c39;
+    background-color: var(--primary-color);
     color: #fff;
 }
 
 .productAction {
-    background-color: #fb2c39;
+    background-color: var(--primary-color);
     color: #fff;
     height: 100%;
     width: 100%;

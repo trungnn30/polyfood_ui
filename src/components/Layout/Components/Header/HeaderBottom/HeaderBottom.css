@@ -1,0 +1,26 @@
+.header-bottom {
+    height: 80px;
+}
+
+.header-img {
+    width: 150px;
+}
+
+.header-img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.header-right-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.icon {
+    font-size: 20px !important;
+}
+
+.ant-badge-count {
+    z-index: 2 !important;
+}

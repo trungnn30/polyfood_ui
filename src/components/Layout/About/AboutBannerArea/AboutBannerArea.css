@@ -1,5 +1,10 @@
 .about-banner-wrap {
     overflow: hidden;
+    border-radius: 50%;
+    border: 7px solid #fff;
+    box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+    width: 80%;
+    margin: 0 auto;
 }
 
 .about-banner-img {

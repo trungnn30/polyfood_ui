@@ -1,5 +1,8 @@
 import './BannerArea.css';
 import { Col, Row } from 'antd';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
 function BannerArea() {
     return (

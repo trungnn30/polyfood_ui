@@ -1,4 +1,5 @@
-import ButtonComponent from '../../../Components/Button';
+import ButtonComponent from '../Button';
+import './NavHeader.css';
 
 function NavHeader() {
     const items = [
@@ -31,7 +32,7 @@ function NavHeader() {
     return (
         <div className="nav">
             <nav>
-                <ul className="d-flex">
+                <ul className="text-align-center">
                     {items.map((item) => (
                         <li key={item.key}>
                             <ButtonComponent to={item.to} primaryHover className="lh-74">

@@ -10,7 +10,7 @@ function FunfactArea() {
                 <Row gutter={[32, 16]}>
                     <Col xs={12} lg={12} md={24} sm={24}>
                         <div className="funfact-content text-align-center">
-                            <p>Giao dịch trong ngày</p>
+                            <p>Đồng hồ sinh học</p>
                             <Timer />
                             <div>
                                 <ButtonComponent primary>Mua hàng ngay</ButtonComponent>
@@ -18,7 +18,7 @@ function FunfactArea() {
                         </div>
                     </Col>
                     <Col xs={12} lg={12} md={24} sm={24}>
-                        <div>
+                        <div className="funfact-deals-img">
                             <img src="./assets/img/clock.png" alt="" className="funfact-img" />
                         </div>
                     </Col>

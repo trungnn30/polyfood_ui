@@ -1,6 +1,6 @@
-.count {
+.count .ant-statistic-content-value {
     font-size: 40px;
-    color: red;
+    color: var(--primary-color);
     font-weight: 600;
 }
 

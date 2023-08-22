@@ -43,6 +43,7 @@ function ProductSideBar({ products }) {
         filterData = product.filter((value) => {
             return value.name.toLowerCase().includes(search.toLocaleLowerCase());
         });
+        setProduct(filterData);
         console.log(filterData);
     };
     return (
