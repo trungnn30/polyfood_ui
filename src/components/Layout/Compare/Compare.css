@@ -1,0 +1,39 @@
+.compare-area-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.compare-area-table td,
+.compare-area-table th {
+    border: 1px solid #dee2e6;
+    
+}
+
+.compare-img-title {
+    padding: 27px 10px 35px;
+    vertical-align: top;
+    max-width: 292px;
+}
+
+.compare-img {
+    clear: both;
+    width: 100%;
+    margin: 14px 0 7px;
+    display: block;
+}
+
+.compare-img img {
+    width: 100%;
+    height: auto;
+}
+
+.title-column {
+    min-width: 292px;
+    font-size: 15px;
+    color: #262626;
+    margin: 0;
+    background-color: #e6e6e6;
+    font-weight: 500;
+    padding: 10px 30px;
+    border: none;
+}

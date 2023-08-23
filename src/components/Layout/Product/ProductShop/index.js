@@ -57,7 +57,7 @@ function ProductShop({ products }) {
                 </div>
             </div>
             <div className="shop-bot-wrap">
-                <ProductRender products={products}/>
+                <ProductRender products={products} />
             </div>
         </div>
     );

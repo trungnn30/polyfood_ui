@@ -28,7 +28,7 @@ function HeaderBottom() {
                         <div>
                             <nav>
                                 <ul className="header-right-wrap">
-                                    <li>
+                                    <li className="px-10">
                                         <Popover
                                             content={
                                                 <Search
@@ -41,12 +41,12 @@ function HeaderBottom() {
                                             trigger="click"
                                             placement="bottomRight"
                                         >
-                                            <ButtonComponent primaryHover className="pr-0 ml-15">
+                                            <ButtonComponent primaryHover className="pr-0 pl-0">
                                                 <SearchOutlined className="icon" />
                                             </ButtonComponent>
                                         </Popover>
                                     </li>
-                                    <li>
+                                    <li className="px-10">
                                         <Popover
                                             content={
                                                 <ButtonComponent primaryHover to={'/login-register'}>
@@ -56,28 +56,28 @@ function HeaderBottom() {
                                             trigger="click"
                                             placement="bottomRight"
                                         >
-                                            <ButtonComponent primaryHover className="pr-0 ml-15">
+                                            <ButtonComponent primaryHover className="pr-0 pl-0">
                                                 <UserOutlined className="icon" />
                                             </ButtonComponent>
                                         </Popover>
                                     </li>
-                                    <li>
+                                    <li className="px-10">
                                         <Badge showZero count={count}>
-                                            <ButtonComponent primaryHover className="pr-0 ml-15">
+                                            <ButtonComponent to={'/compare'} primaryHover className="pr-0 pl-0">
                                                 <SwapOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>
                                     </li>
-                                    <li>
+                                    <li className="px-10">
                                         <Badge showZero count={count}>
-                                            <ButtonComponent primaryHover className="pr-0 ml-15">
+                                            <ButtonComponent to={'/wishlist'} primaryHover className="pr-0 pl-0">
                                                 <HeartOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>
                                     </li>
-                                    <li>
+                                    <li className="px-10 pr-0">
                                         <Badge showZero count={count}>
-                                            <ButtonComponent primaryHover className="pr-0 ml-15">
+                                            <ButtonComponent to={'/cart'} primaryHover className="pr-0 pl-0">
                                                 <ShoppingOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>

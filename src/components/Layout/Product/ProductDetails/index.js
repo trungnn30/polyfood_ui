@@ -24,6 +24,12 @@ function ProductDetails() {
             </div>
         );
     }
+    const handleAddToCompare = (id) => {
+        var items = JSON.parse(localStorage.getItem('compare') || '[]');
+        var item = productItems.find((product) => product.id === id);
+        items.push(item);
+        localStorage.setItem('compare', JSON.stringify(items));
+    };
     return (
         <div className="product-detail-area">
             <div className="container">
@@ -64,7 +70,11 @@ function ProductDetails() {
                                         <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
                                             <HeartOutlined />
                                         </ButtonComponent>
-                                        <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                        <ButtonComponent
+                                            onClick={() => handleAddToCompare(product.id)}
+                                            primaryHover
+                                            className="pl-0 pr-0 mx-20"
+                                        >
                                             <SwapOutlined />
                                         </ButtonComponent>
                                     </div>

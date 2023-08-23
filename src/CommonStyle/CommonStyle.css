@@ -58,8 +58,16 @@ span {
     padding-left: 0px !important;
 }
 
+.pl-20 {
+    padding-left: 20px;
+}
+
 .pr-0 {
     padding-right: 0px !important;
+}
+
+.pr-20 {
+    padding-right: 20px;
 }
 
 .pt-20 {
@@ -84,6 +92,11 @@ span {
 
 .pb-90 {
     padding-bottom: 90px;
+}
+
+.px-10 {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .px-30 {
@@ -324,4 +337,52 @@ img,
 /* Text */
 .text-light {
     color: #f8f9fa !important;
+}
+
+/* Img */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Empty */
+.empty p {
+    font-size: 20px;
+}
+
+.empty-icon {
+    font-size: 140px;
+    line-height: 1;
+}
+
+.btn-add-empty {
+    background-color: #363f4d;
+    color: #fff;
+    padding: 16px 30px;
+    transition: all 0.4s ease 0s;
+}
+
+.btn-add-empty:hover {
+    background-color: var(--primary-color);
+}
+
+/* Shopping */
+.shopping-action {
+    line-height: 1;
+    display: inline-block;
+    padding: 18px 63px 17px;
+    text-transform: capitalize;
+    color: #363f4d;
+    border: none;
+    border-radius: 50px;
+    background: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 14px;
+}
+
+.shopping-action:hover {
+    color: #fff;
+    background-color: var(--primary-color);
 }

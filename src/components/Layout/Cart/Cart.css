@@ -1,0 +1,43 @@
+.cart-area p {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 15px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+}
+
+.cart-table thead > tr {
+    border: 1px solid #ebebeb;
+    background-color: #f9f9f9;
+}
+
+.cart-table tbody > tr {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.cart-table tbody > tr td {
+    font-size: 15px;
+    padding: 30px;
+    text-align: center;
+    color: #333;
+}
+
+.cart-table th {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 21px 45px 22px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: #333;
+    border-top: none;
+}
+
+.cart-img {
+    width: 150px;
+}

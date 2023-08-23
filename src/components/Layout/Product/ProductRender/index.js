@@ -7,6 +7,18 @@ import { EyeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 function ProductRender({ products }) {
+    const handleAddToCart = (id) => {
+        var items = JSON.parse(localStorage.getItem('carts') || '[]');
+        var item = products.find((product) => product.id === id);
+        items.push(item);
+        localStorage.setItem('carts', JSON.stringify(items));
+    };
+    const handleAddToWishList = (id) => {
+        var items = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        var item = products.find((product) => product.id === id);
+        items.push(item);
+        localStorage.setItem('wishlist', JSON.stringify(items));
+    };
     return (
         <Row gutter={[32, 32]} className="text-align-center">
             {products.map((product) => (
@@ -20,14 +32,22 @@ function ProductRender({ products }) {
                                 <Row>
                                     <Col xs={4} lg={4} md={4} sm={4}>
                                         <div className="product-same-action product-wishlist">
-                                            <ButtonComponent productAction className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                onClick={() => handleAddToWishList(product.id)}
+                                                productAction
+                                                className="pl-0 pr-0"
+                                            >
                                                 <HeartOutlined />
                                             </ButtonComponent>
                                         </div>
                                     </Col>
                                     <Col xs={16} lg={16} md={16} sm={16}>
                                         <div className="product-same-action product-cart">
-                                            <ButtonComponent productAction className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                onClick={() => handleAddToCart(product.id)}
+                                                productAction
+                                                className="pl-0 pr-0"
+                                            >
                                                 <ShoppingCartOutlined className="mr-5" />
                                                 <span>Thêm vào giỏ hàng</span>
                                             </ButtonComponent>
