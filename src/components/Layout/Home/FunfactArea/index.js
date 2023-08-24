@@ -13,7 +13,9 @@ function FunfactArea() {
                             <p>Đồng hồ sinh học</p>
                             <Timer />
                             <div>
-                                <ButtonComponent primary>Mua hàng ngay</ButtonComponent>
+                                <ButtonComponent to={'/shop'} primary>
+                                    Mua hàng ngay
+                                </ButtonComponent>
                             </div>
                         </div>
                     </Col>

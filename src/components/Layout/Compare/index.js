@@ -2,22 +2,44 @@ import ButtonComponent from '../Components/Button';
 import './Compare.css';
 
 import { Rate } from 'antd/lib';
-import { SwapOutlined } from '@ant-design/icons';
+import { SwapOutlined, DeleteOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 function CompareArea() {
     const compareItems = JSON.parse(localStorage.getItem('compare'));
+    const [compares, setCompare] = useState(compareItems || []);
+    const deleteCompare = (id) => {
+        setCompare((compare) => {
+            let x = compare.filter((x) => x.id !== id);
+            if (x.length === 0) {
+                localStorage.removeItem('compare');
+            } else {
+                localStorage.setItem('compare', JSON.stringify(x));
+            }
+            return x;
+        });
+    };
     return (
         <div className="compare-area py-100">
             <div className="container">
-                {compareItems !== null && (
+                {compares.length > 0 && (
                     <>
                         <table className="compare-area-table">
                             <tbody>
                                 <tr>
                                     <td className="title-column">Thông tin sản phẩm</td>
-                                    {compareItems.map((item) => (
+                                    {compares.map((item) => (
                                         <td key={item.id} className="compare-img-title text-align-center">
                                             <div>
+                                                <div>
+                                                    <ButtonComponent
+                                                        onClick={() => deleteCompare(item.id)}
+                                                        primaryHover
+                                                        className="pl-0 pr-0 font-size-25"
+                                                    >
+                                                        <DeleteOutlined />
+                                                    </ButtonComponent>
+                                                </div>
                                                 <div className="compare-img">
                                                     <img src={item.img} alt={item.name} className="img-fluid" />
                                                 </div>
@@ -30,19 +52,19 @@ function CompareArea() {
                                 </tr>
                                 <tr>
                                     <td className="title-column">Giá</td>
-                                    {compareItems.map((item) => (
+                                    {compares.map((item) => (
                                         <td key={item.id}>{item.price}</td>
                                     ))}
                                 </tr>
                                 <tr>
                                     <td className="title-column">Mô tả</td>
-                                    {compareItems.map((item) => (
+                                    {compares.map((item) => (
                                         <td key={item.id}>{item.sale}</td>
                                     ))}
                                 </tr>
                                 <tr>
                                     <td className="title-column">Đánh giá</td>
-                                    {compareItems.map((item) => (
+                                    {compares.map((item) => (
                                         <td key={item.id}>
                                             <Rate disabled defaultValue={item.rate} />
                                         </td>
@@ -52,7 +74,7 @@ function CompareArea() {
                         </table>
                     </>
                 )}
-                {compareItems === null && (
+                {compares.length === 0 && (
                     <div className="empty text-align-center">
                         <SwapOutlined className="empty-icon" />
                         <p>Không có sản phẩm yêu thích</p>

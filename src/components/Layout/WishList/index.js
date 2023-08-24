@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ButtonComponent from '../Components/Button';
 import './WishList.css';
 
@@ -5,10 +6,26 @@ import { HeartOutlined, CloseOutlined } from '@ant-design/icons';
 
 function WishListArea() {
     const wishListItems = JSON.parse(localStorage.getItem('wishlist'));
+    const [wishList, setWishList] = useState(wishListItems || []);
+    const deleteWishList = (id) => {
+        setWishList((wishList) => {
+            let x = wishList.filter((x) => x.id !== id);
+            if (x.length === 0) {
+                localStorage.removeItem('wishlist');
+            } else {
+                localStorage.setItem('wishlist', JSON.stringify(x));
+            }
+            return x;
+        });
+    };
+    const deleteAll = () => {
+        setWishList([]);
+        return localStorage.removeItem('wishlist');
+    };
     return (
         <div className="wish-list-area py-100">
             <div className="container">
-                {wishListItems !== null && (
+                {wishList.length > 0 && (
                     <>
                         <p>Sản phẩm yêu thích của bạn</p>
                         <table className="cart-table">
@@ -22,7 +39,7 @@ function WishListArea() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {wishListItems.map((item) => (
+                                {wishList.map((item) => (
                                     <tr key={item.id}>
                                         <td className="cart-img">
                                             <img src={item.img} alt="" className="img-fluid" />
@@ -35,7 +52,11 @@ function WishListArea() {
                                         <td>{item.price}</td>
                                         <td></td>
                                         <td>
-                                            <ButtonComponent primaryHover className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                onClick={() => deleteWishList(item.id)}
+                                                primaryHover
+                                                className="pl-0 pr-0"
+                                            >
                                                 <CloseOutlined />
                                             </ButtonComponent>
                                         </td>
@@ -50,12 +71,14 @@ function WishListArea() {
                                 </ButtonComponent>
                             </div>
                             <div className="shopping-clear">
-                                <ButtonComponent className="shopping-action">XÓA HẾT</ButtonComponent>
+                                <ButtonComponent onClick={deleteAll} className="shopping-action">
+                                    XÓA HẾT
+                                </ButtonComponent>
                             </div>
                         </div>
                     </>
                 )}
-                {wishListItems === null && (
+                {wishList.length === 0 && (
                     <div className="empty text-align-center">
                         <HeartOutlined className="empty-icon" />
                         <p>Không có sản phẩm yêu thích</p>

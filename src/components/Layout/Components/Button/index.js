@@ -11,6 +11,7 @@ function ButtonComponent({
     onClick,
     children,
     primary,
+    primary2,
     primaryHover,
     primarySubcribe,
     tag,
@@ -34,6 +35,7 @@ function ButtonComponent({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
+        primary2,
         primaryHover,
         primarySubcribe,
         tag,

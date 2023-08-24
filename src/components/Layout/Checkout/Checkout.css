@@ -1,0 +1,38 @@
+.billing-info-wrap h3, .your-order-area h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: #000;
+}
+
+.your-order-wrap {
+    padding: 38px 45px 44px;
+    background: #f6f6f6;
+}
+
+.your-order-top,
+.your-order-bottom {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.your-order-middle,
+.your-order-total {
+    margin: 28px 0;
+    padding: 18px 0;
+    border-top: 1px solid #dee0e4;
+    border-bottom: 1px solid #dee0e4;
+}
+
+.order-total {
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+}
+
+.discount-code-wrap {
+    padding: 45px 30px 50px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}

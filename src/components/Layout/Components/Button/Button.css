@@ -19,7 +19,7 @@
 
 .primary {
     background-color: #6eab49;
-    color: #fff;
+    color: #fff !important;
     padding: 16px 50px;
     position: relative;
     overflow: hidden;
@@ -63,6 +63,23 @@
     opacity: 1;
     transform: translateX(0);
     transition: transform 350ms 360ms ease;
+}
+
+.primary2 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    display: block;
+    padding: 18px 0;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 50px;
+    background-color: #f58634;
+    width: 100%;
+    &:hover {
+        background-color: #333;
+    }
 }
 
 .primarySubcribe {

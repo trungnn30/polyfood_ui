@@ -5,19 +5,28 @@ import { HeartOutlined } from '@ant-design/icons';
 import { Col, Row, Rate } from 'antd';
 import { EyeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+// import { useState } from 'react';
 
 function ProductRender({ products }) {
+    // let [countCart, setCountCart] = useState(JSON.parse(localStorage.getItem('countCart' || 0)));
+    // let [countWishList, setCountWishList] = useState(JSON.parse(localStorage.getItem('countWishList' || 0)));
+    // localStorage.setItem('countCart', countCart);
+    // localStorage.setItem('countWishList', countWishList);
+
     const handleAddToCart = (id) => {
         var items = JSON.parse(localStorage.getItem('carts') || '[]');
         var item = products.find((product) => product.id === id);
         items.push(item);
         localStorage.setItem('carts', JSON.stringify(items));
+        // setCountCart(countCart + 1);
     };
+
     const handleAddToWishList = (id) => {
         var items = JSON.parse(localStorage.getItem('wishlist') || '[]');
         var item = products.find((product) => product.id === id);
         items.push(item);
         localStorage.setItem('wishlist', JSON.stringify(items));
+        // setCountWishList(countWishList + 1);
     };
     return (
         <Row gutter={[32, 32]} className="text-align-center">
@@ -74,7 +83,7 @@ function ProductRender({ products }) {
                                 </ButtonComponent>
                             </h3>
                             <div className="product-price mb-6">
-                                <span className="new-price">{product.price}</span>
+                                <span className="new-price">{product.price} VND</span>
                                 <span></span>
                             </div>
                             <div className="product-rating pb-20">

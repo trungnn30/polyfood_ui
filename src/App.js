@@ -12,6 +12,7 @@ import LoginRegisterPage from './pages/LoginRegister';
 import CartPage from './pages/Cart';
 import ComparePage from './pages/Compare';
 import WishListPage from './pages/WishList';
+import CheckOutPage from './pages/Checkout';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/compare" element={<ComparePage />}></Route>
             <Route path="/wishlist" element={<WishListPage />}></Route>
+            <Route path="/checkout" element={<CheckOutPage />}></Route>
         </Routes>
     );
 }
