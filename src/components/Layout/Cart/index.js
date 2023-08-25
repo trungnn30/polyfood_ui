@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ButtonComponent from '../Components/Button';
 import './Cart.css';
 
@@ -10,10 +10,10 @@ function CartArea() {
     const cartItems = JSON.parse(localStorage.getItem('carts'));
     const [carts, setCarts] = useState(cartItems || []);
     let [count, setCount] = useState(1);
-    const increaseCount = () => {
+    const increaseCount = (id) => {
         setCount(count + 1);
     };
-    const decreaseCount = () => {
+    const decreaseCount = (id) => {
         setCount((count = count <= 1 ? 1 : count - 1));
     };
     const deleteCart = (id) => {
@@ -40,11 +40,25 @@ function CartArea() {
         }).then((result) => {
             if (result.isConfirmed) {
                 setCarts([]);
-                Swal.fire('Thành công!', 'Đã xóa tất cả sản phẩm.', 'success');
+                Swal.fire('Thành công!', 'Đã xóa tất cả sản phẩm trong giỏ hàng.', 'success');
                 return localStorage.removeItem('carts');
             }
         });
     };
+    const totalNew = useMemo(() => {
+        if (cartItems) {
+            return cartItems.reduce((total, element) => {
+                return total + element.price;
+            }, 0);
+        }
+    }, [cartItems]);
+    const totalOld = useMemo(() => {
+        if (cartItems) {
+            return cartItems.reduce((total, element) => {
+                return total + element.oldPrice;
+            }, 0);
+        }
+    }, [cartItems]);
     return (
         <div className="cart-area py-100">
             <div className="container">
@@ -66,10 +80,17 @@ function CartArea() {
                                 {carts.map((cart) => (
                                     <tr key={cart.id}>
                                         <td className="cart-img">
-                                            <img src={cart.img} alt="" className="img-fluid" />
+                                            <img
+                                                src={cart.img}
+                                                alt=""
+                                                className="img-fluid"
+                                            />
                                         </td>
                                         <td>
-                                            <ButtonComponent primaryHover className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                primaryHover
+                                                className="pl-0 pr-0"
+                                            >
                                                 {cart.name}
                                             </ButtonComponent>
                                         </td>
@@ -78,8 +99,16 @@ function CartArea() {
                                             <Input
                                                 value={count}
                                                 readOnly
-                                                prefix={<button onClick={decreaseCount}>-</button>}
-                                                suffix={<button onClick={increaseCount}>+</button>}
+                                                prefix={
+                                                    <button onClick={decreaseCount}>
+                                                        -
+                                                    </button>
+                                                }
+                                                suffix={
+                                                    <button onClick={increaseCount}>
+                                                        +
+                                                    </button>
+                                                }
                                                 style={{
                                                     width: '100px',
                                                     outline: 'none',
@@ -109,7 +138,10 @@ function CartArea() {
                                 </ButtonComponent>
                             </div>
                             <div className="shopping-clear">
-                                <ButtonComponent onClick={deleteAll} className="shopping-action">
+                                <ButtonComponent
+                                    onClick={deleteAll}
+                                    className="shopping-action"
+                                >
                                     XÓA GIỎ HÀNG
                                 </ButtonComponent>
                             </div>
@@ -122,13 +154,21 @@ function CartArea() {
                                     <div className="title-wrap">
                                         <h4>Tổng giá giỏ hàng</h4>
                                     </div>
-                                    <h5>
-                                        Giá gốc
-                                        <span></span>
+                                    <h5 className="d-flex justify-content-between">
+                                        <span>Giá gốc</span>
+                                        <span
+                                            style={{
+                                                textDecoration: 'line-through',
+                                                color: '#ccc',
+                                                fontSize: '18px',
+                                            }}
+                                        >
+                                            {totalOld} VND
+                                        </span>
                                     </h5>
-                                    <h4 className="grand-total-title">
-                                        Tổng cộng
-                                        <span></span>
+                                    <h4 className="grand-total-title d-flex justify-content-between">
+                                        <span>Tổng cộng</span>
+                                        <span>{totalNew} VND</span>
                                     </h4>
                                     <ButtonComponent to={'/checkout'} primary2>
                                         Tiến hành kiểm tra

@@ -37,12 +37,22 @@ function Login() {
                                     },
                                 ]}
                             >
-                                <Input size="large" type="password" placeholder="Mật khẩu" />
+                                <Input
+                                    size="large"
+                                    type="password"
+                                    placeholder="Mật khẩu"
+                                />
                             </Form.Item>
                             <Form.Item>
                                 <div className="d-flex justify-content-between">
-                                    <ButtonComponent loginRegister>ĐĂNG NHẬP</ButtonComponent>
-                                    <ButtonComponent primaryHover className="pl-0 pr-0">
+                                    <ButtonComponent loginRegister>
+                                        ĐĂNG NHẬP
+                                    </ButtonComponent>
+                                    <ButtonComponent
+                                        to={'/forgot-password'}
+                                        primaryHover
+                                        className="pl-0 pr-0"
+                                    >
                                         Quên mật khẩu
                                     </ButtonComponent>
                                 </div>

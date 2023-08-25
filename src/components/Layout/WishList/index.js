@@ -3,6 +3,7 @@ import ButtonComponent from '../Components/Button';
 import './WishList.css';
 
 import { HeartOutlined, CloseOutlined } from '@ant-design/icons';
+import { notification } from 'antd/lib';
 
 function WishListArea() {
     const wishListItems = JSON.parse(localStorage.getItem('wishlist'));
@@ -20,6 +21,10 @@ function WishListArea() {
     };
     const deleteAll = () => {
         setWishList([]);
+        notification.warning({
+            placement: 'bottomLeft',
+            message: 'Đã xóa hết sản phẩm yêu thích',
+        });
         return localStorage.removeItem('wishlist');
     };
     return (
@@ -42,15 +47,26 @@ function WishListArea() {
                                 {wishList.map((item) => (
                                     <tr key={item.id}>
                                         <td className="cart-img">
-                                            <img src={item.img} alt="" className="img-fluid" />
+                                            <img
+                                                src={item.img}
+                                                alt=""
+                                                className="img-fluid"
+                                            />
                                         </td>
                                         <td>
-                                            <ButtonComponent primaryHover className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                primaryHover
+                                                className="pl-0 pr-0"
+                                            >
                                                 {item.name}
                                             </ButtonComponent>
                                         </td>
                                         <td>{item.price}</td>
-                                        <td></td>
+                                        <td>
+                                            <ButtonComponent className="btn-add-to-cart">
+                                                THÊM
+                                            </ButtonComponent>
+                                        </td>
                                         <td>
                                             <ButtonComponent
                                                 onClick={() => deleteWishList(item.id)}
@@ -71,7 +87,10 @@ function WishListArea() {
                                 </ButtonComponent>
                             </div>
                             <div className="shopping-clear">
-                                <ButtonComponent onClick={deleteAll} className="shopping-action">
+                                <ButtonComponent
+                                    onClick={deleteAll}
+                                    className="shopping-action"
+                                >
                                     XÓA HẾT
                                 </ButtonComponent>
                             </div>

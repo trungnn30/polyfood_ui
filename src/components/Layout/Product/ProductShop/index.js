@@ -1,9 +1,14 @@
 import ButtonComponent from '../../Components/Button';
 import './ProductShop.css';
+import ProductRender from '../ProductRender';
+import productItems from '../Product';
 
 import { Select } from 'antd';
-import { UnorderedListOutlined, AppstoreOutlined, TableOutlined } from '@ant-design/icons';
-import ProductRender from '../ProductRender';
+import {
+    UnorderedListOutlined,
+    AppstoreOutlined,
+    TableOutlined,
+} from '@ant-design/icons';
 
 function ProductShop({ products }) {
     const items = [
@@ -39,7 +44,13 @@ function ProductShop({ products }) {
                                 }}
                             />
                         </div>
-                        <p>{products.length} / 25 sản phẩm</p>
+                        <p
+                            style={{
+                                color: '#606060',
+                            }}
+                        >
+                            {products.length} / {productItems.length} sản phẩm
+                        </p>
                     </div>
                     <div className="shop-tab d-flex align-items-center">
                         <ButtonComponent primaryHover className="pl-0 pr-0">

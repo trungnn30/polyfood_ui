@@ -3,3 +3,22 @@
     font-weight: 500;
     margin: 0 0 15px;
 }
+
+.btn-add-to-cart {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    background: none;
+    background-color: #f58634;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #333;
+}

@@ -2,13 +2,20 @@ import './Checkout.css';
 import ButtonComponent from '../Components/Button';
 
 import { MoneyCollectOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Input, Row, Col, Form } from 'antd';
 const { TextArea } = Input;
 
 function CheckOutArea() {
     const cartItems = JSON.parse(localStorage.getItem('carts'));
     const [carts, setCarts] = useState(cartItems || []);
+    const total = useMemo(() => {
+        if (cartItems) {
+            return cartItems.reduce((total, element) => {
+                return total + element.price;
+            }, 0);
+        }
+    }, [cartItems]);
     return (
         <div className="checkout-area py-100">
             <div className="container">
@@ -100,9 +107,13 @@ function CheckOutArea() {
                                             </ul>
                                         </div>
                                         <div className="your-order-middle">
-                                            <ul className="d-flex justify-content-between">
-                                                <li>Sản Phẩm</li>
-                                                <li>Tổng số lượng</li>
+                                            <ul>
+                                                {carts.map((cart) => (
+                                                    <li key={cart.id} className="d-flex justify-content-between mb-10">
+                                                        <span>{cart.name}</span>
+                                                        <span>{cart.price} VND</span>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                         <div className="your-order-bottom">
@@ -114,7 +125,7 @@ function CheckOutArea() {
                                         <div className="your-order-total">
                                             <ul className="d-flex justify-content-between">
                                                 <li className="order-total">Tổng cộng</li>
-                                                <li></li>
+                                                <li className="order-total-price">{total} VND</li>
                                             </ul>
                                         </div>
                                     </div>

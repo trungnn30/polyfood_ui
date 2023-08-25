@@ -13,6 +13,7 @@ import CartPage from './pages/Cart';
 import ComparePage from './pages/Compare';
 import WishListPage from './pages/WishList';
 import CheckOutPage from './pages/Checkout';
+import ForgotPasswordPage from './pages/ForgotPassword';
 
 function App() {
     return (
@@ -24,11 +25,12 @@ function App() {
             <Route path="/blog" element={<BlogPage />}></Route>
             <Route path="/blog/:id" element={<BlogDetail />}></Route>
             <Route path="/contact" element={<ContactPage />}></Route>
-            <Route path="/login-register" element={<LoginRegisterPage />}></Route>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/compare" element={<ComparePage />}></Route>
             <Route path="/wishlist" element={<WishListPage />}></Route>
             <Route path="/checkout" element={<CheckOutPage />}></Route>
+            <Route path="/login-register" element={<LoginRegisterPage />}></Route>
+            <Route path="/forgot-password" element={<ForgotPasswordPage />}></Route>
         </Routes>
     );
 }
