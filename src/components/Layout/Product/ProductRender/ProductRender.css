@@ -45,6 +45,10 @@
     color: #fff;
 }
 
+.product-same-action-disable {
+    background-color: #000 !important;
+}
+
 .product-cart {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
@@ -78,7 +82,7 @@
 .product-price .old-price {
     text-decoration: line-through;
     color: #8e8e8e;
-    color: #cccccc
+    color: #cccccc;
 }
 
 .product-price .new-price::before {

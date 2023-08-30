@@ -1,15 +1,23 @@
-import { Input, Col, Row, Popover, Badge } from 'antd';
-import { SearchOutlined, UserOutlined, HeartOutlined, ShoppingOutlined, SwapOutlined } from '@ant-design/icons';
 import ButtonComponent from '../../../Components/Button';
 import NavHeader from '../../../Components/NavHeader';
 import './HeaderBottom.css';
-import { useState } from 'react';
+import { CountContext } from '../../CountContext/CountContext';
+
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Input, Col, Row, Popover, Badge } from 'antd';
+import {
+    SearchOutlined,
+    UserOutlined,
+    HeartOutlined,
+    ShoppingOutlined,
+    SwapOutlined,
+} from '@ant-design/icons';
 
 const { Search } = Input;
 
 function HeaderBottom() {
-    const [count, setCount] = useState(0);
+    const value = useContext(CountContext);
     return (
         <div className="header-bottom mt-5">
             <div className="header-bottom-wrap">
@@ -41,7 +49,10 @@ function HeaderBottom() {
                                             trigger="click"
                                             placement="bottomRight"
                                         >
-                                            <ButtonComponent primaryHover className="pr-0 pl-0">
+                                            <ButtonComponent
+                                                primaryHover
+                                                className="pr-0 pl-0"
+                                            >
                                                 <SearchOutlined className="icon" />
                                             </ButtonComponent>
                                         </Popover>
@@ -49,35 +60,53 @@ function HeaderBottom() {
                                     <li className="px-10">
                                         <Popover
                                             content={
-                                                <ButtonComponent primaryHover to={'/login-register'}>
+                                                <ButtonComponent
+                                                    primaryHover
+                                                    to={'/login-register'}
+                                                >
                                                     Đăng nhập
                                                 </ButtonComponent>
                                             }
                                             trigger="click"
                                             placement="bottomRight"
                                         >
-                                            <ButtonComponent primaryHover className="pr-0 pl-0">
+                                            <ButtonComponent
+                                                primaryHover
+                                                className="pr-0 pl-0"
+                                            >
                                                 <UserOutlined className="icon" />
                                             </ButtonComponent>
                                         </Popover>
                                     </li>
                                     <li className="px-10">
-                                        <Badge showZero count={count}>
-                                            <ButtonComponent to={'/compare'} primaryHover className="pr-0 pl-0">
+                                        <Badge showZero count={value.countCompare}>
+                                            <ButtonComponent
+                                                to={'/compare'}
+                                                primaryHover
+                                                className="pr-0 pl-0"
+                                            >
                                                 <SwapOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>
                                     </li>
                                     <li className="px-10">
-                                        <Badge showZero count={count}>
-                                            <ButtonComponent to={'/wishlist'} primaryHover className="pr-0 pl-0">
+                                        <Badge showZero count={value.countWishList}>
+                                            <ButtonComponent
+                                                to={'/wishlist'}
+                                                primaryHover
+                                                className="pr-0 pl-0"
+                                            >
                                                 <HeartOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>
                                     </li>
                                     <li className="px-10 pr-0">
-                                        <Badge showZero count={count}>
-                                            <ButtonComponent to={'/cart'} primaryHover className="pr-0 pl-0">
+                                        <Badge showZero count={value.countCart}>
+                                            <ButtonComponent
+                                                to={'/cart'}
+                                                primaryHover
+                                                className="pr-0 pl-0"
+                                            >
                                                 <ShoppingOutlined className="icon" />
                                             </ButtonComponent>
                                         </Badge>

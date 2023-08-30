@@ -4,12 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CommonStyle from './CommonStyle';
 import { BrowserRouter } from 'react-router-dom';
-
+import { CountProvider } from './components/Layout/Components/CountContext/CountContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <CommonStyle>
         <BrowserRouter>
-            <App />
+            <CountProvider>
+                <App />
+            </CountProvider>
         </BrowserRouter>
     </CommonStyle>,
 );

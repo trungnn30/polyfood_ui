@@ -10,12 +10,12 @@ function CheckOutArea() {
     const cartItems = JSON.parse(localStorage.getItem('carts'));
     const [carts, setCarts] = useState(cartItems || []);
     const total = useMemo(() => {
-        if (cartItems) {
-            return cartItems.reduce((total, element) => {
-                return total + element.price;
+        if (carts) {
+            return carts.reduce((total, element) => {
+                return total + element.price * element.quantity;
             }, 0);
         }
-    }, [cartItems]);
+    }, [carts]);
     return (
         <div className="checkout-area py-100">
             <div className="container">
@@ -109,9 +109,17 @@ function CheckOutArea() {
                                         <div className="your-order-middle">
                                             <ul>
                                                 {carts.map((cart) => (
-                                                    <li key={cart.id} className="d-flex justify-content-between mb-10">
-                                                        <span>{cart.name}</span>
-                                                        <span>{cart.price} VND</span>
+                                                    <li
+                                                        key={cart.id}
+                                                        className="d-flex justify-content-between mb-10"
+                                                    >
+                                                        <span>
+                                                            {cart.name} x {cart.quantity}
+                                                        </span>
+                                                        <span>
+                                                            {cart.price * cart.quantity}{' '}
+                                                            VND
+                                                        </span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -125,7 +133,9 @@ function CheckOutArea() {
                                         <div className="your-order-total">
                                             <ul className="d-flex justify-content-between">
                                                 <li className="order-total">Tổng cộng</li>
-                                                <li className="order-total-price">{total} VND</li>
+                                                <li className="order-total-price">
+                                                    {total} VND
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -157,7 +167,9 @@ function CheckOutArea() {
                                                     <Input size="large" />
                                                 </Form.Item>
                                             </Form>
-                                            <ButtonComponent primary2>ÁP DỤNG</ButtonComponent>
+                                            <ButtonComponent primary2>
+                                                ÁP DỤNG
+                                            </ButtonComponent>
                                         </div>
                                     </div>
                                 </div>

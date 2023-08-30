@@ -1,41 +1,45 @@
 import ButtonComponent from '../../Components/Button';
 import './ProductRender.css';
+import { CountContext } from '../../Components/CountContext/CountContext';
 
 import { HeartOutlined } from '@ant-design/icons';
 import { Col, Row, Rate, notification } from 'antd';
 import { EyeOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-// import { useState } from 'react';
+import { useContext } from 'react';
 
 function ProductRender({ products }) {
-    // const [api, contextHolder] = notification.useNotification();
-    // let [countCart, setCountCart] = useState(JSON.parse(localStorage.getItem('countCart' || 0)));
-    // let [countWishList, setCountWishList] = useState(JSON.parse(localStorage.getItem('countWishList' || 0)));
-    // localStorage.setItem('countCart', countCart);
-    // localStorage.setItem('countWishList', countWishList);
+    const value = useContext(CountContext);
 
     const handleAddToCart = (id) => {
         var items = JSON.parse(localStorage.getItem('carts') || '[]');
         var item = products.find((product) => product.id === id);
-        items.push(item);
-        localStorage.setItem('carts', JSON.stringify(items));
-        // setCountCart(countCart + 1);
-        notification.success({
-            placement: 'bottomLeft',
-            message: 'Đã thêm vào giỏ hàng',
-        });
+        var itemExist = items.find((x) => x.id === item.id);
+        if (!itemExist) {
+            items.push({ ...item, quantity: 1 });
+            localStorage.setItem('carts', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào giỏ hàng',
+            });
+            value.setCountCart(value.countCart + 1);
+        }
     };
 
     const handleAddToWishList = (id) => {
         var items = JSON.parse(localStorage.getItem('wishlist') || '[]');
         var item = products.find((product) => product.id === id);
-        items.push(item);
-        localStorage.setItem('wishlist', JSON.stringify(items));
-        // setCountWishList(countWishList + 1);
-        notification.success({
-            placement: 'bottomLeft',
-            message: 'Đã thêm vào mục yêu thích',
-        });
+        var itemExist = items.find((x) => x.id === item.id);
+        if (!itemExist) {
+            items.push(item);
+            localStorage.setItem('wishlist', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào mục yêu thích',
+            });
+            value.setCountWishList(value.countWishList + 1);
+            // setIsAdded(true);
+        }
     };
     return (
         <Row gutter={[32, 32]} className="text-align-center">

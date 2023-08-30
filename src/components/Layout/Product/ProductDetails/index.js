@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { Col, Row, Tag, Input, Tabs } from 'antd';
+import { Col, Row, Tag, Input, Tabs, notification } from 'antd';
 import { HeartOutlined, SwapOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import productItems from '../Product';
 import './ProductDetails.css';
 import ButtonComponent from '../../Components/Button';
+import { CountContext } from '../../Components/CountContext/CountContext';
 
 function ProductDetails() {
+    const value = useContext(CountContext);
     let [count, setCount] = useState(1);
     const increaseCount = () => {
         setCount(count + 1);
@@ -15,21 +17,47 @@ function ProductDetails() {
     const decreaseCount = () => {
         setCount((count = count <= 1 ? 1 : count - 1));
     };
+
     const { id } = useParams();
     const product = productItems.find((p) => parseInt(p.id) === parseInt(id));
     if (!product) {
         return (
-            <div>
+            <div className="container py-100 text-align-center">
                 <h1>Sản phẩm có id {id} không tồn tại</h1>
             </div>
         );
     }
+
     const handleAddToCompare = (id) => {
         var items = JSON.parse(localStorage.getItem('compare') || '[]');
         var item = productItems.find((product) => product.id === id);
-        items.push(item);
-        localStorage.setItem('compare', JSON.stringify(items));
+        var itemExist = items.find((x) => x.id === item.id);
+        if (!itemExist) {
+            items.push(item);
+            localStorage.setItem('compare', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào mục so sánh',
+            });
+            value.setCountCompare(value.countCompare + 1);
+        }
     };
+
+    const handleAddToCart = (id) => {
+        var items = JSON.parse(localStorage.getItem('carts') || '[]');
+        var item = productItems.find((product) => product.id === id);
+        var itemExist = items.find((x) => x.id === item.id);
+        if (!itemExist) {
+            items.push({ ...item, quantity: count });
+            localStorage.setItem('carts', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào giỏ hàng',
+            });
+            value.setCountCart(value.countCart + 1);
+        }
+    };
+
     return (
         <div className="product-detail-area">
             <div className="container">
@@ -46,8 +74,12 @@ function ProductDetails() {
                                             borderBottom: '1px solid #ccc',
                                         }}
                                     >
-                                        <p className="product-detail-name">{product.name}</p>
-                                        <p className="product-detail-price mt-16 mb-20">{product.price}</p>
+                                        <p className="product-detail-name">
+                                            {product.name}
+                                        </p>
+                                        <p className="product-detail-price mt-16 mb-20">
+                                            {product.price}
+                                        </p>
                                         <p className="pb-20 mb-20">Mô tả</p>
                                     </div>
                                     <div className="product-detail-quality d-flex align-items-center">
@@ -55,8 +87,16 @@ function ProductDetails() {
                                             <Input
                                                 value={count}
                                                 readOnly
-                                                prefix={<button onClick={decreaseCount}>-</button>}
-                                                suffix={<button onClick={increaseCount}>+</button>}
+                                                prefix={
+                                                    <button onClick={decreaseCount}>
+                                                        -
+                                                    </button>
+                                                }
+                                                suffix={
+                                                    <button onClick={increaseCount}>
+                                                        +
+                                                    </button>
+                                                }
                                                 style={{
                                                     width: '80px',
                                                     outline: 'none',
@@ -64,10 +104,17 @@ function ProductDetails() {
                                                 size="large"
                                             />
                                         </div>
-                                        <ButtonComponent primary className="add-to-cart mx-20">
+                                        <ButtonComponent
+                                            primary
+                                            className="add-to-cart mx-20"
+                                            onClick={() => handleAddToCart(product.id)}
+                                        >
                                             Thêm
                                         </ButtonComponent>
-                                        <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                        <ButtonComponent
+                                            primaryHover
+                                            className="pl-0 pr-0 mx-20"
+                                        >
                                             <HeartOutlined />
                                         </ButtonComponent>
                                         <ButtonComponent
@@ -80,14 +127,22 @@ function ProductDetails() {
                                     </div>
                                     <div className="product-detail-meta py-10">
                                         <span className="mr-5">Danh mục: </span>
-                                        <ButtonComponent to={'/shop'} primaryHover className="pl-0 pr-0">
+                                        <ButtonComponent
+                                            to={'/shop'}
+                                            primaryHover
+                                            className="pl-0 pr-0"
+                                        >
                                             {product.category}
                                         </ButtonComponent>
                                     </div>
                                     <div className="product-detail-meta py-10">
                                         <span className="mr-5">Nhãn: </span>
                                         <Tag>
-                                            <ButtonComponent to={'/shop'} primaryHover className="pl-0 pr-0">
+                                            <ButtonComponent
+                                                to={'/shop'}
+                                                primaryHover
+                                                className="pl-0 pr-0"
+                                            >
                                                 {product.tag}
                                             </ButtonComponent>
                                         </Tag>

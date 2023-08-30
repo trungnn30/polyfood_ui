@@ -1,20 +1,46 @@
-import { useMemo, useState } from 'react';
-import ButtonComponent from '../Components/Button';
-import './Cart.css';
-
+import { useMemo, useState, useContext } from 'react';
 import { ShoppingOutlined, CloseOutlined } from '@ant-design/icons';
-import { Input, Row, Col } from 'antd';
+import { Input, Row, Col, notification } from 'antd';
 import Swal from 'sweetalert2';
 
+import ButtonComponent from '../Components/Button';
+import './Cart.css';
+import { CountContext } from '../Components/CountContext/CountContext';
+
 function CartArea() {
+    const value = useContext(CountContext);
     const cartItems = JSON.parse(localStorage.getItem('carts'));
     const [carts, setCarts] = useState(cartItems || []);
-    let [count, setCount] = useState(1);
     const increaseCount = (id) => {
-        setCount(count + 1);
+        setCarts((oldState) => {
+            const cartIndex = oldState.findIndex((cart) => cart.id === id);
+            if (cartIndex !== -1) {
+                oldState[cartIndex].quantity = oldState[cartIndex].quantity + 1;
+            }
+            return [...oldState];
+        });
+        notification.success({
+            placement: 'bottomLeft',
+            message: 'Đã thêm sản phẩm vào giỏ hàng',
+        });
     };
     const decreaseCount = (id) => {
-        setCount((count = count <= 1 ? 1 : count - 1));
+        setCarts((oldState) => {
+            const cartIndex = oldState.findIndex((cart) => cart.id === id);
+            if (cartIndex !== -1) {
+                oldState[cartIndex].quantity =
+                    oldState[cartIndex].quantity <= 1
+                        ? 1
+                        : oldState[cartIndex].quantity - 1;
+            }
+            if (oldState[cartIndex].quantity > 1) {
+                notification.warning({
+                    placement: 'bottomLeft',
+                    message: 'Đã xóa sản phẩm khỏi giỏ hàng',
+                });
+            }
+            return [...oldState];
+        });
     };
     const deleteCart = (id) => {
         setCarts((cart) => {
@@ -26,6 +52,11 @@ function CartArea() {
             }
             return x;
         });
+        notification.warning({
+            placement: 'bottomLeft',
+            message: 'Đã xóa sản phẩm khỏi giỏ hàng',
+        });
+        value.setCountCart(value.countCart - 1);
     };
     const deleteAll = () => {
         Swal.fire({
@@ -40,25 +71,32 @@ function CartArea() {
         }).then((result) => {
             if (result.isConfirmed) {
                 setCarts([]);
-                Swal.fire('Thành công!', 'Đã xóa tất cả sản phẩm trong giỏ hàng.', 'success');
+                value.setCountCart(0);
+                Swal.fire(
+                    'Thành công!',
+                    'Đã xóa tất cả sản phẩm trong giỏ hàng.',
+                    'success',
+                );
                 return localStorage.removeItem('carts');
             }
         });
     };
     const totalNew = useMemo(() => {
-        if (cartItems) {
-            return cartItems.reduce((total, element) => {
-                return total + element.price;
+        if (carts) {
+            return carts.reduce((total, element) => {
+                return total + element.price * element.quantity;
             }, 0);
         }
-    }, [cartItems]);
+    }, [carts]);
     const totalOld = useMemo(() => {
-        if (cartItems) {
-            return cartItems.reduce((total, element) => {
-                return total + element.oldPrice;
+        if (carts) {
+            return carts.reduce((total, element) => {
+                return total + element.oldPrice * element.quantity;
             }, 0);
         }
-    }, [cartItems]);
+    }, [carts]);
+    localStorage.setItem('carts', JSON.stringify(carts));
+    console.log(cartItems);
     return (
         <div className="cart-area py-100">
             <div className="container">
@@ -97,15 +135,23 @@ function CartArea() {
                                         <td>{cart.price} VND</td>
                                         <td>
                                             <Input
-                                                value={count}
+                                                value={cart.quantity}
                                                 readOnly
                                                 prefix={
-                                                    <button onClick={decreaseCount}>
+                                                    <button
+                                                        onClick={() =>
+                                                            decreaseCount(cart.id)
+                                                        }
+                                                    >
                                                         -
                                                     </button>
                                                 }
                                                 suffix={
-                                                    <button onClick={increaseCount}>
+                                                    <button
+                                                        onClick={() =>
+                                                            increaseCount(cart.id)
+                                                        }
+                                                    >
                                                         +
                                                     </button>
                                                 }
@@ -117,7 +163,7 @@ function CartArea() {
                                                 className="cart-quantity"
                                             />
                                         </td>
-                                        <td>{cart.price * count} VND</td>
+                                        <td>{cart.price * cart.quantity} VND</td>
                                         <td>
                                             <ButtonComponent
                                                 onClick={() => deleteCart(cart.id)}

@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import ButtonComponent from '../Components/Button';
-import './WishList.css';
-
+import { useState, useContext } from 'react';
 import { HeartOutlined, CloseOutlined } from '@ant-design/icons';
 import { notification } from 'antd/lib';
 
+import ButtonComponent from '../Components/Button';
+import './WishList.css';
+import { CountContext } from '../Components/CountContext/CountContext';
+
 function WishListArea() {
+    const value = useContext(CountContext);
     const wishListItems = JSON.parse(localStorage.getItem('wishlist'));
     const [wishList, setWishList] = useState(wishListItems || []);
     const deleteWishList = (id) => {
@@ -18,9 +20,15 @@ function WishListArea() {
             }
             return x;
         });
+        notification.warning({
+            placement: 'bottomLeft',
+            message: 'Đã xóa sản phẩm yêu thích',
+        });
+        value.setCountWishList(value.countWishList - 1);
     };
     const deleteAll = () => {
         setWishList([]);
+        value.setCountWishList(0);
         notification.warning({
             placement: 'bottomLeft',
             message: 'Đã xóa hết sản phẩm yêu thích',
