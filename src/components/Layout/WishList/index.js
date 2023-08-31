@@ -9,16 +9,26 @@ import { CountContext } from '../Components/CountContext/CountContext';
 function WishListArea() {
     const value = useContext(CountContext);
     const wishListItems = JSON.parse(localStorage.getItem('wishlist'));
+    const addedWishList = JSON.parse(localStorage.getItem('addedWishList'));
+    const addedCart = JSON.parse(localStorage.getItem('addedCart'));
     const [wishList, setWishList] = useState(wishListItems || []);
+    const [added, setAdded] = useState(addedWishList || []);
+    const [cartExist, setCartExist] = useState(addedCart || []);
     const deleteWishList = (id) => {
         setWishList((wishList) => {
             let x = wishList.filter((x) => x.id !== id);
             if (x.length === 0) {
                 localStorage.removeItem('wishlist');
+                localStorage.removeItem('addedWishList');
             } else {
                 localStorage.setItem('wishlist', JSON.stringify(x));
             }
             return x;
+        });
+        setAdded((added) => {
+            const nextAdded = { ...added };
+            delete nextAdded[id];
+            return nextAdded;
         });
         notification.warning({
             placement: 'bottomLeft',
@@ -33,8 +43,9 @@ function WishListArea() {
             placement: 'bottomLeft',
             message: 'Đã xóa hết sản phẩm yêu thích',
         });
-        return localStorage.removeItem('wishlist');
+        return localStorage.removeItem('addedWishList');
     };
+    localStorage.setItem('addedWishList', JSON.stringify(added));
     return (
         <div className="wish-list-area py-100">
             <div className="container">
@@ -71,9 +82,16 @@ function WishListArea() {
                                         </td>
                                         <td>{item.price}</td>
                                         <td>
-                                            <ButtonComponent className="btn-add-to-cart">
-                                                THÊM
-                                            </ButtonComponent>
+                                            {!cartExist && (
+                                                <ButtonComponent className="btn-add-to-cart">
+                                                    THÊM
+                                                </ButtonComponent>
+                                            )}
+                                            {cartExist && (
+                                                <ButtonComponent className="btn-add-to-cart btn-disable">
+                                                    ĐÃ THÊM
+                                                </ButtonComponent>
+                                            )}
                                         </td>
                                         <td>
                                             <ButtonComponent

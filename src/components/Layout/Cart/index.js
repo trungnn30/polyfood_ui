@@ -10,7 +10,9 @@ import { CountContext } from '../Components/CountContext/CountContext';
 function CartArea() {
     const value = useContext(CountContext);
     const cartItems = JSON.parse(localStorage.getItem('carts'));
+    const addedCart = JSON.parse(localStorage.getItem('addedCart'));
     const [carts, setCarts] = useState(cartItems || []);
+    const [added, setAdded] = useState(addedCart || []);
     const increaseCount = (id) => {
         setCarts((oldState) => {
             const cartIndex = oldState.findIndex((cart) => cart.id === id);
@@ -53,6 +55,11 @@ function CartArea() {
             }
             return x;
         });
+        setAdded((added) => {
+            const nextAdded = { ...added };
+            delete nextAdded[id];
+            return nextAdded;
+        });
         notification.warning({
             placement: 'bottomLeft',
             message: 'Đã xóa sản phẩm khỏi giỏ hàng',
@@ -78,9 +85,7 @@ function CartArea() {
                     'Đã xóa tất cả sản phẩm trong giỏ hàng.',
                     'success',
                 );
-                return (
-                    localStorage.removeItem('addedCart')
-                );
+                return localStorage.removeItem('addedCart');
             }
         });
     };
@@ -99,7 +104,7 @@ function CartArea() {
         }
     }, [carts]);
     localStorage.setItem('carts', JSON.stringify(carts));
-    console.log(cartItems);
+    localStorage.setItem('addedCart', JSON.stringify(added));
     return (
         <div className="cart-area py-100">
             <div className="container">

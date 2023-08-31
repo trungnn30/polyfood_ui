@@ -390,3 +390,8 @@ img,
     color: #fff;
     background-color: var(--primary-color);
 }
+
+/* Button */
+.btn-disable {
+    background-color: #000 !important;
+}

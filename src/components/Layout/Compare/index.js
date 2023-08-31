@@ -10,16 +10,24 @@ import { notification } from 'antd/lib';
 function CompareArea() {
     const value = useContext(CountContext);
     const compareItems = JSON.parse(localStorage.getItem('compare'));
+    const addedCompare = JSON.parse(localStorage.getItem('addedCompare'));
     const [compares, setCompare] = useState(compareItems || []);
+    const [added, setAdded] = useState(addedCompare || []);
     const deleteCompare = (id) => {
         setCompare((compare) => {
             let x = compare.filter((x) => x.id !== id);
             if (x.length === 0) {
                 localStorage.removeItem('compare');
+                localStorage.removeItem('addedCompare');
             } else {
                 localStorage.setItem('compare', JSON.stringify(x));
             }
             return x;
+        });
+        setAdded((added) => {
+            const nextAdded = { ...added };
+            delete nextAdded[id];
+            return nextAdded;
         });
         notification.warning({
             placement: 'bottomLeft',
@@ -27,6 +35,7 @@ function CompareArea() {
         });
         value.setCountWishList(value.countWishList - 1);
     };
+    localStorage.setItem('addedCompare', JSON.stringify(added));
     return (
         <div className="compare-area py-100">
             <div className="container">
