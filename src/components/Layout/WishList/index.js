@@ -82,12 +82,12 @@ function WishListArea() {
                                         </td>
                                         <td>{item.price}</td>
                                         <td>
-                                            {!cartExist && (
+                                            {!cartExist[item.id] && (
                                                 <ButtonComponent className="btn-add-to-cart">
                                                     THÊM
                                                 </ButtonComponent>
                                             )}
-                                            {cartExist && (
+                                            {cartExist[item.id] && (
                                                 <ButtonComponent className="btn-add-to-cart btn-disable">
                                                     ĐÃ THÊM
                                                 </ButtonComponent>
