@@ -47,6 +47,7 @@ function CartArea() {
             let x = cart.filter((x) => x.id !== id);
             if (x.length === 0) {
                 localStorage.removeItem('carts');
+                localStorage.removeItem('addedCart');
             } else {
                 localStorage.setItem('carts', JSON.stringify(x));
             }
@@ -77,7 +78,9 @@ function CartArea() {
                     'Đã xóa tất cả sản phẩm trong giỏ hàng.',
                     'success',
                 );
-                return localStorage.removeItem('carts');
+                return (
+                    localStorage.removeItem('addedCart')
+                );
             }
         });
     };

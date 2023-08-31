@@ -1,11 +1,14 @@
 import ButtonComponent from '../Components/Button';
 import './Compare.css';
+import { CountContext } from '../Components/CountContext/CountContext';
 
 import { Rate } from 'antd/lib';
 import { SwapOutlined, DeleteOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { notification } from 'antd/lib';
 
 function CompareArea() {
+    const value = useContext(CountContext);
     const compareItems = JSON.parse(localStorage.getItem('compare'));
     const [compares, setCompare] = useState(compareItems || []);
     const deleteCompare = (id) => {
@@ -18,6 +21,11 @@ function CompareArea() {
             }
             return x;
         });
+        notification.warning({
+            placement: 'bottomLeft',
+            message: 'Đã xóa sản phẩm so sánh',
+        });
+        value.setCountWishList(value.countWishList - 1);
     };
     return (
         <div className="compare-area py-100">
@@ -29,11 +37,16 @@ function CompareArea() {
                                 <tr>
                                     <td className="title-column">Thông tin sản phẩm</td>
                                     {compares.map((item) => (
-                                        <td key={item.id} className="compare-img-title text-align-center">
+                                        <td
+                                            key={item.id}
+                                            className="compare-img-title text-align-center"
+                                        >
                                             <div>
                                                 <div>
                                                     <ButtonComponent
-                                                        onClick={() => deleteCompare(item.id)}
+                                                        onClick={() =>
+                                                            deleteCompare(item.id)
+                                                        }
                                                         primaryHover
                                                         className="pl-0 pr-0 font-size-25"
                                                     >
@@ -41,7 +54,11 @@ function CompareArea() {
                                                     </ButtonComponent>
                                                 </div>
                                                 <div className="compare-img">
-                                                    <img src={item.img} alt={item.name} className="img-fluid" />
+                                                    <img
+                                                        src={item.img}
+                                                        alt={item.name}
+                                                        className="img-fluid"
+                                                    />
                                                 </div>
                                                 <div className="compare-product-title">
                                                     <p>{item.name}</p>
