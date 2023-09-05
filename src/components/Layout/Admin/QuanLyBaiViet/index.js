@@ -1,6 +1,6 @@
-import { Table, Modal, Form, Input } from 'antd/lib';
+import { Table } from 'antd/lib';
 
-function QuanLyDanhGia() {
+function QuanLyBaiViet() {
     const columns = [
         {
             title: 'Sản phẩm',
@@ -34,4 +34,4 @@ function QuanLyDanhGia() {
     );
 }
 
-export default QuanLyDanhGia;
+export default QuanLyBaiViet;

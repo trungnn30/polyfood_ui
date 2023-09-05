@@ -79,13 +79,13 @@ function CartArea() {
         }).then((result) => {
             if (result.isConfirmed) {
                 setCarts([]);
+                setAdded([]);
                 value.setCountCart(0);
                 Swal.fire(
                     'Thành công!',
                     'Đã xóa tất cả sản phẩm trong giỏ hàng.',
                     'success',
                 );
-                return localStorage.removeItem('addedCart');
             }
         });
     };

@@ -14,6 +14,23 @@ function WishListArea() {
     const [wishList, setWishList] = useState(wishListItems || []);
     const [added, setAdded] = useState(addedWishList || []);
     const [cartExist, setCartExist] = useState(addedCart || []);
+    const handleAddToCart = (id) => {
+        var items = JSON.parse(localStorage.getItem('carts') || '[]');
+        var item = wishList.find((product) => product.id === id);
+        if (item) {
+            items.push({ ...item, quantity: 1 });
+            localStorage.setItem('carts', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào giỏ hàng',
+            });
+            value.setCountCart(value.countCart + 1);
+        }
+        const added = (x) => {
+            setCartExist((added) => ({ ...added, [x.id]: x.id }));
+        };
+        added(item);
+    };
     const deleteWishList = (id) => {
         setWishList((wishList) => {
             let x = wishList.filter((x) => x.id !== id);
@@ -38,13 +55,14 @@ function WishListArea() {
     };
     const deleteAll = () => {
         setWishList([]);
+        setAdded([]);
         value.setCountWishList(0);
         notification.warning({
             placement: 'bottomLeft',
             message: 'Đã xóa hết sản phẩm yêu thích',
         });
-        return localStorage.removeItem('addedWishList');
     };
+    localStorage.setItem('addedCart', JSON.stringify(cartExist));
     localStorage.setItem('addedWishList', JSON.stringify(added));
     return (
         <div className="wish-list-area py-100">
@@ -83,7 +101,12 @@ function WishListArea() {
                                         <td>{item.price}</td>
                                         <td>
                                             {!cartExist[item.id] && (
-                                                <ButtonComponent className="btn-add-to-cart">
+                                                <ButtonComponent
+                                                    onClick={() =>
+                                                        handleAddToCart(item.id)
+                                                    }
+                                                    className="btn-add-to-cart"
+                                                >
                                                     THÊM
                                                 </ButtonComponent>
                                             )}

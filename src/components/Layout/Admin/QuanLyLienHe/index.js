@@ -1,6 +1,6 @@
-import { Table, Modal, Form, Input } from 'antd/lib';
+import { Table } from 'antd/lib';
 
-function QuanLyPhanQuyen() {
+function QuanLyLienHe() {
     const columns = [
         {
             title: 'Quyền hạn',
@@ -22,4 +22,4 @@ function QuanLyPhanQuyen() {
     );
 }
 
-export default QuanLyPhanQuyen;
+export default QuanLyLienHe;

@@ -24,3 +24,126 @@
 .ant-badge-count {
     z-index: 2 !important;
 }
+
+.cart {
+    position: relative;
+}
+
+.menu {
+    position: absolute;
+    z-index: 5;
+    top: 200%;
+    right: 0;
+    visibility: hidden;
+    width: 340px;
+    padding: 10px 35px;
+    transition: all 0.5s ease 0s;
+    transform: rotateX(90deg);
+    transform-origin: center top 0;
+    opacity: 0;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    background: #fff none repeat scroll 0 0;
+}
+
+.menu-active {
+    visibility: visible;
+    transform: rotateX(0deg);
+    opacity: 1;
+}
+
+.menu ul {
+    overflow-y: auto;
+    max-height: 400px;
+    margin-right: -15px;
+    padding-top: 20px;
+    padding-right: 15px;
+}
+
+.single-shopping-cart {
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.shopping-cart-img {
+    flex: 0 0 82px;
+    margin-right: 15px;
+}
+
+.shopping-cart-img img {
+    width: 100%;
+}
+
+.shopping-cart-title h4 {
+    font-size: 15px;
+    line-height: 16px;
+    font-weight: 400;
+}
+
+.shopping-cart-title h6 {
+    font-size: 13px;
+    margin: 6px 0 16px;
+    font-weight: 400;
+}
+
+.shopping-cart-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all 0.2s ease 0s;
+}
+
+.default-btn {
+    position: relative;
+    padding: 16px 0;
+    margin-bottom: 20px;
+    color: #010101;
+    border: 1px solid #333;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.default-btn::after,
+.default-btn::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: var(--primary-color);
+    /* z-index: -1; */
+}
+
+.default-btn::before {
+    transform: translateX(-100%);
+    z-index: 0;
+}
+
+.default-btn:hover:before {
+    transform: translateX(0);
+    transition: transform 350ms ease;
+}
+
+.default-btn::after {
+    transform: translateX(100%);
+    transition: none;
+    transition: transform 350ms ease;
+    z-index: 0;
+}
+
+.default-btn:hover:after {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 350ms 360ms ease;
+}
+
+.default-btn:hover {
+    color: #fff;
+    border: 1px solid var(--primary-color);
+}

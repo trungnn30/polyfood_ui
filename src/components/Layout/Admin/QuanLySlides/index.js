@@ -1,14 +1,22 @@
 import { Table } from 'antd/lib';
 
-function QuanLyLoaiSanPham() {
+function QuanLySlides() {
     const columns = [
         {
-            title: 'Tên loại',
-            dataIndex: 'name_product_type',
+            title: 'Sản phẩm',
+            dataIndex: 'product_id',
         },
         {
-            title: 'Hình ảnh',
-            dataIndex: 'image_type_product',
+            title: 'Người đánh giá',
+            dataIndex: 'user_id',
+        },
+        {
+            title: 'Đánh giá',
+            dataIndex: 'content_rated',
+        },
+        {
+            title: 'Trạng thái',
+            dataIndex: 'status',
         },
         {
             title: 'Ngày tạo',
@@ -26,4 +34,4 @@ function QuanLyLoaiSanPham() {
     );
 }
 
-export default QuanLyLoaiSanPham;
+export default QuanLySlides;

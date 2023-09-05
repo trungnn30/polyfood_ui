@@ -4,7 +4,7 @@ import './HeaderBottom.css';
 import { CountContext } from '../../CountContext/CountContext';
 
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState, useMemo } from 'react';
 import { Input, Col, Row, Popover, Badge } from 'antd';
 import {
     SearchOutlined,
@@ -18,6 +18,18 @@ const { Search } = Input;
 
 function HeaderBottom() {
     const value = useContext(CountContext);
+    const cartItems = JSON.parse(localStorage.getItem('carts') || '[]');
+    const [show, setShow] = useState(false);
+    const handleShow = () => {
+        setShow(!show);
+    };
+    const total = useMemo(() => {
+        if (cartItems) {
+            return cartItems.reduce((total, element) => {
+                return total + element.price * element.quantity;
+            }, 0);
+        }
+    }, [cartItems]);
     return (
         <div className="header-bottom mt-5">
             <div className="header-bottom-wrap">
@@ -103,12 +115,83 @@ function HeaderBottom() {
                                     <li className="px-10 pr-0">
                                         <Badge showZero count={value.countCart}>
                                             <ButtonComponent
-                                                to={'/cart'}
+                                                // to={'/cart'}
                                                 primaryHover
                                                 className="pr-0 pl-0"
+                                                onClick={handleShow}
                                             >
                                                 <ShoppingOutlined className="icon" />
                                             </ButtonComponent>
+                                            {show && (
+                                                <div className="menu menu-active">
+                                                    {cartItems.length === 0 && (
+                                                        <div className='text-align-center'>
+                                                            <p>
+                                                                Không có sản phẩm trong
+                                                                giỏ hàng
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                    {cartItems.length > 0 && (
+                                                        <div>
+                                                            <ul>
+                                                                {cartItems.map((cart) => (
+                                                                    <li
+                                                                        key={cart.id}
+                                                                        className="single-shopping-cart d-flex"
+                                                                    >
+                                                                        <div className="shopping-cart-img">
+                                                                            <img
+                                                                                src={
+                                                                                    cart.img
+                                                                                }
+                                                                                alt=""
+                                                                            />
+                                                                        </div>
+                                                                        <div className="shopping-cart-title">
+                                                                            <h4>
+                                                                                {
+                                                                                    cart.name
+                                                                                }
+                                                                            </h4>
+                                                                            <h6>
+                                                                                Số lượng:{' '}
+                                                                                {
+                                                                                    cart.quantity
+                                                                                }{' '}
+                                                                                món
+                                                                            </h6>
+                                                                            <span>
+                                                                                {cart.price *
+                                                                                    cart.quantity}{' '}
+                                                                                VND
+                                                                            </span>
+                                                                        </div>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                            <div className="d-flex justify-content-between">
+                                                                <span>Tổng giá:</span>
+                                                                <span>{total} VND</span>
+                                                            </div>
+                                                            <div className="mt-25">
+                                                                <ButtonComponent
+                                                                    to={'/cart'}
+                                                                    className="default-btn"
+                                                                >
+                                                                    XEM GIỎ HÀNG
+                                                                </ButtonComponent>
+                                                                <ButtonComponent
+                                                                    to={'/checkout'}
+                                                                    className="default-btn"
+                                                                >
+                                                                    THANH TOÁN
+                                                                </ButtonComponent>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </Badge>
                                     </li>
                                 </ul>

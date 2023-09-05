@@ -13,8 +13,6 @@ function ProductRender({ products }) {
 
     const [openQuickView, setOpenQuickView] = useState(false);
 
-    const cartItems = JSON.parse(localStorage.getItem('carts'));
-
     const [isAddedCart, setIsAddedCart] = useState(
         JSON.parse(localStorage.getItem('addedCart')) || {},
     );
@@ -73,6 +71,10 @@ function ProductRender({ products }) {
             });
             value.setCountCart(value.countCart + 1);
         }
+        const added = (x) => {
+            setIsAddedCart((added) => ({ ...added, [x.id]: x.id }));
+        };
+        added(item);
     };
 
     const handleAddToWishList = (id) => {
@@ -117,8 +119,6 @@ function ProductRender({ products }) {
         setOpenQuickView(true);
         setQuickView({ ...product });
     };
-
-    console.log(cartItems);
 
     return (
         <Row gutter={[32, 32]} className="text-align-center">

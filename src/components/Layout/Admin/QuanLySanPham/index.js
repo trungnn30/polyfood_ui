@@ -1,4 +1,4 @@
-import { Table, Modal, Form, Input } from 'antd/lib';
+import { Table } from 'antd/lib';
 
 function QuanLySanPham() {
     const columns = [

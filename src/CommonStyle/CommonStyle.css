@@ -394,4 +394,5 @@ img,
 /* Button */
 .btn-disable {
     background-color: #000 !important;
+    cursor: default;
 }

@@ -12,7 +12,7 @@
     color: #555252;
 }
 
-.primaryHover:hover span {
+.primaryHover:hover > span {
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
@@ -20,7 +20,7 @@
 .primary {
     background-color: #6eab49;
     color: #fff !important;
-    padding: 16px 50px;
+    padding: 16px 34px;
     position: relative;
     overflow: hidden;
 }

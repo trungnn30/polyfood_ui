@@ -45,7 +45,10 @@ function Login() {
                             </Form.Item>
                             <Form.Item>
                                 <div className="d-flex justify-content-between">
-                                    <ButtonComponent loginRegister>
+                                    <ButtonComponent
+                                        loginRegister
+                                        to={'/admin/dashboard'}
+                                    >
                                         ĐĂNG NHẬP
                                     </ButtonComponent>
                                     <ButtonComponent

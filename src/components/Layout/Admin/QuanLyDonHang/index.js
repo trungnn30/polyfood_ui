@@ -1,6 +1,6 @@
-import { Table, Modal, Form, Input } from 'antd/lib';
+import { Table } from 'antd/lib';
 
-function QuanLyTrangThaiDatHang() {
+function QuanLyDonHang() {
     const columns = [
         {
             title: 'Trạng thái',
@@ -14,4 +14,4 @@ function QuanLyTrangThaiDatHang() {
     );
 }
 
-export default QuanLyTrangThaiDatHang;
+export default QuanLyDonHang;
