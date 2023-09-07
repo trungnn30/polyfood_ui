@@ -13,9 +13,7 @@ function ProductRender({ products }) {
 
     const [openQuickView, setOpenQuickView] = useState(false);
 
-    const [isAddedCart, setIsAddedCart] = useState(
-        JSON.parse(localStorage.getItem('addedCart')) || {},
-    );
+    const [isAddedCart, setIsAddedCart] = useState(JSON.parse(localStorage.getItem('addedCart')) || {});
     localStorage.setItem('addedCart', JSON.stringify(isAddedCart));
 
     const [isAddedWishList, setIsAddedWishList] = useState(
@@ -135,9 +133,7 @@ function ProductRender({ products }) {
                                         <div className="product-same-action product-wishlist">
                                             {!isAddedWishList[product.id] && (
                                                 <ButtonComponent
-                                                    onClick={() =>
-                                                        handleAddToWishList(product.id)
-                                                    }
+                                                    onClick={() => handleAddToWishList(product.id)}
                                                     productAction
                                                     className="pl-0 pr-0 btn-wist-list"
                                                 >
@@ -158,9 +154,7 @@ function ProductRender({ products }) {
                                         <div className="product-same-action product-cart">
                                             {!isAddedCart[product.id] && (
                                                 <ButtonComponent
-                                                    onClick={() =>
-                                                        handleAddToCart(product.id)
-                                                    }
+                                                    onClick={() => handleAddToCart(product.id)}
                                                     productAction
                                                     className="pl-0 pr-0 btn-cart"
                                                 >
@@ -174,7 +168,7 @@ function ProductRender({ products }) {
                                                     className="pl-0 pr-0 btn-disable"
                                                 >
                                                     <ShoppingCartOutlined className="mr-5" />
-                                                    <span>Đã thêm</span>
+                                                    <span>Đã thêm vào giỏ</span>
                                                 </ButtonComponent>
                                             )}
                                         </div>
@@ -236,9 +230,7 @@ function ProductRender({ products }) {
                                 }}
                             >
                                 <p className="product-detail-name">{quickView.name}</p>
-                                <p className="product-detail-price mt-16 mb-20">
-                                    {quickView.price}
-                                </p>
+                                <p className="product-detail-price mt-16 mb-20">{quickView.price}</p>
                                 <p className="pb-20 mb-20">Mô tả</p>
                             </div>
                             <div className="product-detail-quality d-flex align-items-center">
@@ -246,12 +238,8 @@ function ProductRender({ products }) {
                                     <Input
                                         value={count}
                                         readOnly
-                                        prefix={
-                                            <button onClick={decreaseCount}>-</button>
-                                        }
-                                        suffix={
-                                            <button onClick={increaseCount}>+</button>
-                                        }
+                                        prefix={<button onClick={decreaseCount}>-</button>}
+                                        suffix={<button onClick={increaseCount}>+</button>}
                                         style={{
                                             width: '80px',
                                             outline: 'none',
@@ -263,18 +251,13 @@ function ProductRender({ products }) {
                                     <ButtonComponent
                                         primary
                                         className="add-to-cart mx-20"
-                                        onClick={() =>
-                                            handleAddToCartFromQuickView(quickView.id)
-                                        }
+                                        onClick={() => handleAddToCartFromQuickView(quickView.id)}
                                     >
                                         Thêm
                                     </ButtonComponent>
                                 )}
                                 {isAddedCart[quickView.id] && (
-                                    <ButtonComponent
-                                        primary
-                                        className="add-to-cart mx-20"
-                                    >
+                                    <ButtonComponent primary className="add-to-cart mx-20">
                                         Đã thêm
                                     </ButtonComponent>
                                 )}
@@ -288,13 +271,8 @@ function ProductRender({ products }) {
                                     </ButtonComponent>
                                 )}
                                 {isAddedWishList[quickView.id] && (
-                                    <ButtonComponent
-                                        primaryHover
-                                        className="pl-0 pr-0 mx-20"
-                                    >
-                                        <HeartOutlined
-                                            style={{ color: 'var(--primary-color)' }}
-                                        />
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                        <HeartOutlined style={{ color: 'var(--primary-color)' }} />
                                     </ButtonComponent>
                                 )}
                                 {!isAddedCompare[quickView.id] && (
@@ -307,34 +285,21 @@ function ProductRender({ products }) {
                                     </ButtonComponent>
                                 )}
                                 {isAddedCompare[quickView.id] && (
-                                    <ButtonComponent
-                                        primaryHover
-                                        className="pl-0 pr-0 mx-20"
-                                    >
-                                        <SwapOutlined
-                                            style={{ color: 'var(--primary-color)' }}
-                                        />
+                                    <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                        <SwapOutlined style={{ color: 'var(--primary-color)' }} />
                                     </ButtonComponent>
                                 )}
                             </div>
                             <div className="product-detail-meta py-10">
                                 <span className="mr-5">Danh mục: </span>
-                                <ButtonComponent
-                                    to={'/shop'}
-                                    primaryHover
-                                    className="pl-0 pr-0"
-                                >
+                                <ButtonComponent to={'/shop'} primaryHover className="pl-0 pr-0">
                                     {quickView.category}
                                 </ButtonComponent>
                             </div>
                             <div className="product-detail-meta py-10">
                                 <span className="mr-5">Nhãn: </span>
                                 <Tag>
-                                    <ButtonComponent
-                                        to={'/shop'}
-                                        primaryHover
-                                        className="pl-0 pr-0"
-                                    >
+                                    <ButtonComponent to={'/shop'} primaryHover className="pl-0 pr-0">
                                         {quickView.tag}
                                     </ButtonComponent>
                                 </Tag>

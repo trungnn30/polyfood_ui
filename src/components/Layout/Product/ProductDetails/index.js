@@ -9,6 +9,19 @@ import ButtonComponent from '../../Components/Button';
 import { CountContext } from '../../Components/CountContext/CountContext';
 
 function ProductDetails() {
+    const [isAddedCart, setIsAddedCart] = useState(JSON.parse(localStorage.getItem('addedCart')) || {});
+    localStorage.setItem('addedCart', JSON.stringify(isAddedCart));
+
+    const [isAddedWishList, setIsAddedWishList] = useState(
+        JSON.parse(localStorage.getItem('addedWishList')) || {},
+    );
+    localStorage.setItem('addedWishList', JSON.stringify(isAddedWishList));
+
+    const [isAddedCompare, setIsAddedCompare] = useState(
+        JSON.parse(localStorage.getItem('addedCompare')) || {},
+    );
+
+    localStorage.setItem('addedCompare', JSON.stringify(isAddedCompare));
     const value = useContext(CountContext);
     let [count, setCount] = useState(1);
     const increaseCount = () => {
@@ -41,6 +54,10 @@ function ProductDetails() {
             });
             value.setCountCompare(value.countCompare + 1);
         }
+        const added = (x) => {
+            setIsAddedCompare((added) => ({ ...added, [x.id]: x.id }));
+        };
+        added(item);
     };
 
     const handleAddToCart = (id) => {
@@ -56,6 +73,29 @@ function ProductDetails() {
             });
             value.setCountCart(value.countCart + 1);
         }
+        const added = (x) => {
+            setIsAddedCart((added) => ({ ...added, [x.id]: x.id }));
+        };
+        added(item);
+    };
+
+    const handleAddToWishList = (id) => {
+        var items = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        var item = productItems.find((product) => product.id === id);
+        var itemExist = items.find((x) => x.id === item.id);
+        if (!itemExist) {
+            items.push(item);
+            localStorage.setItem('compare', JSON.stringify(items));
+            notification.success({
+                placement: 'bottomLeft',
+                message: 'Đã thêm vào mục yêu thích',
+            });
+            value.setCountCompare(value.countCompare + 1);
+        }
+        const added = (x) => {
+            setIsAddedWishList((added) => ({ ...added, [x.id]: x.id }));
+        };
+        added(item);
     };
 
     return (
@@ -74,9 +114,7 @@ function ProductDetails() {
                                             borderBottom: '1px solid #ccc',
                                         }}
                                     >
-                                        <p className="product-detail-name">
-                                            {product.name}
-                                        </p>
+                                        <p className="product-detail-name">{product.name}</p>
                                         <p className="product-detail-price mt-16 mb-20">
                                             {product.price}
                                         </p>
@@ -87,16 +125,8 @@ function ProductDetails() {
                                             <Input
                                                 value={count}
                                                 readOnly
-                                                prefix={
-                                                    <button onClick={decreaseCount}>
-                                                        -
-                                                    </button>
-                                                }
-                                                suffix={
-                                                    <button onClick={increaseCount}>
-                                                        +
-                                                    </button>
-                                                }
+                                                prefix={<button onClick={decreaseCount}>-</button>}
+                                                suffix={<button onClick={increaseCount}>+</button>}
                                                 style={{
                                                     width: '80px',
                                                     outline: 'none',
@@ -104,34 +134,59 @@ function ProductDetails() {
                                                 size="large"
                                             />
                                         </div>
-                                        <ButtonComponent
-                                            primary
-                                            className="add-to-cart mx-20"
-                                            onClick={() => handleAddToCart(product.id)}
-                                        >
-                                            Thêm
-                                        </ButtonComponent>
-                                        <ButtonComponent
-                                            primaryHover
-                                            className="pl-0 pr-0 mx-20"
-                                        >
-                                            <HeartOutlined />
-                                        </ButtonComponent>
-                                        <ButtonComponent
-                                            onClick={() => handleAddToCompare(product.id)}
-                                            primaryHover
-                                            className="pl-0 pr-0 mx-20"
-                                        >
-                                            <SwapOutlined />
-                                        </ButtonComponent>
+                                        {!isAddedCart[product.id] && (
+                                            <ButtonComponent
+                                                primary
+                                                className="add-to-cart mx-20"
+                                                onClick={() => handleAddToCart(product.id)}
+                                            >
+                                                Thêm
+                                            </ButtonComponent>
+                                        )}
+                                        {isAddedCart[product.id] && (
+                                            <ButtonComponent
+                                                primary
+                                                className="add-to-cart mx-20 btn-disable"
+                                            >
+                                                Đã thêm
+                                            </ButtonComponent>
+                                        )}
+                                        {!isAddedWishList[product.id] && (
+                                            <ButtonComponent
+                                                primaryHover
+                                                className="pl-0 pr-0 mx-20"
+                                                onClick={() => handleAddToWishList(product.id)}
+                                            >
+                                                <HeartOutlined />
+                                            </ButtonComponent>
+                                        )}
+                                        {isAddedWishList[product.id] && (
+                                            <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                                <HeartOutlined
+                                                    style={{ color: 'var(--primary-color)' }}
+                                                />
+                                            </ButtonComponent>
+                                        )}
+                                        {!isAddedCompare[product.id] && (
+                                            <ButtonComponent
+                                                onClick={() => handleAddToCompare(product.id)}
+                                                primaryHover
+                                                className="pl-0 pr-0 mx-20"
+                                            >
+                                                <SwapOutlined />
+                                            </ButtonComponent>
+                                        )}
+                                        {isAddedCompare[product.id] && (
+                                            <ButtonComponent primaryHover className="pl-0 pr-0 mx-20">
+                                                <SwapOutlined
+                                                    style={{ color: 'var(--primary-color)' }}
+                                                />
+                                            </ButtonComponent>
+                                        )}
                                     </div>
                                     <div className="product-detail-meta py-10">
                                         <span className="mr-5">Danh mục: </span>
-                                        <ButtonComponent
-                                            to={'/shop'}
-                                            primaryHover
-                                            className="pl-0 pr-0"
-                                        >
+                                        <ButtonComponent to={'/shop'} primaryHover className="pl-0 pr-0">
                                             {product.category}
                                         </ButtonComponent>
                                     </div>

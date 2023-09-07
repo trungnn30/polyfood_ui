@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Input, Button, Modal, Upload, message } from 'antd';
+import { Form, Input, Button, Modal, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const getBase64 = (file) =>
@@ -10,10 +10,10 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-function CreateCate() {
+function UpdateCate(props) {
     const iniData = Object.freeze({
-        name_product_type: '',
-        image_type_product: '',
+        name_product_type: props.cate.name_product_type,
+        image_type_product: props.cate.image_type_product,
     });
     const [formData, setFormData] = useState(iniData);
     const handleAddChange = (e) => {
@@ -26,27 +26,24 @@ function CreateCate() {
         e.preventDefault();
 
         const data = {
+            product_type_id: props.cate.product_type_id,
             name_product_type: formData.name_product_type,
             image_type_product: formData.image_type_product,
         };
 
-        const addCate = async () => {
-            await fetch('https://localhost:7121/api/ProductType', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            }).then((res) => {
-                if (res.ok) {
-                    message.success('Add successful');
-                    setFormData(iniData);
-                } else {
-                    message.error('Something went wrong');
-                }
+        fetch('https://localhost:7121/api/ProductType', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result);
             });
-        };
-        addCate();
+
+        props.onCateUpdated(data);
     };
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -76,7 +73,7 @@ function CreateCate() {
     );
     return (
         <div>
-            <h1 className="text-align-center mb-20">THÊM DANH MỤC</h1>
+            <h1 className="text-align-center mb-20">CẬP NHẬT DANH MỤC</h1>
             <Form
                 layout="horizontal"
                 labelCol={{
@@ -127,7 +124,21 @@ function CreateCate() {
                     }}
                 >
                     <Button type="primary" style={{ width: '100%' }} onClick={handleSubmit}>
-                        Thêm mới danh mục
+                        Cập nhật danh mục
+                    </Button>
+                </Form.Item>
+                <Form.Item
+                    wrapperCol={{
+                        span: 16,
+                        offset: 4,
+                    }}
+                >
+                    <Button
+                        type="primary"
+                        style={{ width: '100%' }}
+                        onClick={(e) => props.onCateUpdated(null)}
+                    >
+                        Hủy
                     </Button>
                 </Form.Item>
             </Form>
@@ -135,4 +146,4 @@ function CreateCate() {
     );
 }
 
-export default CreateCate;
+export default UpdateCate;

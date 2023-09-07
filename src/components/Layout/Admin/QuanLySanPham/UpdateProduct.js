@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Input, Row, Col, Button, Modal, Upload, Select, message } from 'antd';
+import { Form, Input, Row, Col, Button, Modal, Upload, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 
@@ -11,15 +11,15 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-function CreateProduct() {
+function UpdateProduct(props) {
     const iniData = Object.freeze({
-        name_product: '',
-        price: '',
-        discout: '',
-        product_type_id: '',
-        status: '',
-        avatar_image_product: '',
-        stock: '',
+        name_product: props.product.name_product,
+        price: props.product.price,
+        discout: props.product.discout,
+        product_type_id: props.product.product_type_id,
+        status: props.product.name_pstatusroduct,
+        avatar_image_product: props.product.avatar_image_product,
+        stock: props.product.stock,
     });
     const [formData, setFormData] = useState(iniData);
 
@@ -47,6 +47,7 @@ function CreateProduct() {
         e.preventDefault();
 
         const data = {
+            product_id: props.product.product_id,
             name_product: formData.name_product,
             price: formData.price,
             discout: formData.discout,
@@ -56,24 +57,19 @@ function CreateProduct() {
             stock: formData.stock,
         };
 
-        const addProduct = async () => {
-            await fetch('https://localhost:7121/api/Product', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            }).then((res) => {
-                if (res.ok) {
-                    message.success('Add successful');
-                } else {
-                    message.error('Something went wrong');
-                }
-                console.log(res);
+        fetch('https://localhost:7121/api/Product', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result);
             });
-        };
-        addProduct();
-        console.log(formData);
+
+        props.onProductUpdated(data);
     };
     const items2 = [
         {
@@ -254,7 +250,21 @@ function CreateProduct() {
                     }}
                 >
                     <Button type="primary" style={{ width: '100%' }} onClick={handleSubmit}>
-                        Thêm mới sản phẩm
+                        Cập nhật sản phẩm
+                    </Button>
+                </Form.Item>
+                <Form.Item
+                    wrapperCol={{
+                        span: 16,
+                        offset: 4,
+                    }}
+                >
+                    <Button
+                        type="primary"
+                        style={{ width: '100%' }}
+                        onClick={(e) => props.onProductUpdated(null)}
+                    >
+                        Hủy
                     </Button>
                 </Form.Item>
             </Form>
@@ -262,4 +272,4 @@ function CreateProduct() {
     );
 }
 
-export default CreateProduct;
+export default UpdateProduct;

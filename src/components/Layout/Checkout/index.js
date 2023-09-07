@@ -3,10 +3,36 @@ import ButtonComponent from '../Components/Button';
 
 import { MoneyCollectOutlined } from '@ant-design/icons';
 import { useState, useMemo } from 'react';
-import { Input, Row, Col, Form } from 'antd';
+import { Input, Row, Col, Form, message } from 'antd';
 const { TextArea } = Input;
 
 function CheckOutArea() {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const data = {
+            Id: 1,
+            OrderType: 'loai 1',
+            Amount: 100000,
+            OrderDescription: '2',
+            Name: 'Do vat',
+        };
+        const requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'Access-Control-Allow-Origin': '*',
+            },
+            body: JSON.stringify(data),
+        };
+        fetch('https://localhost:7121/api/VnPay', requestOptions)
+            .then((res) => {
+                console.log(res.redirected);
+            })
+            .then((data) => console.log(data));
+    };
     const cartItems = JSON.parse(localStorage.getItem('carts'));
     const [carts, setCarts] = useState(cartItems || []);
     const total = useMemo(() => {
@@ -34,6 +60,7 @@ function CheckOutArea() {
                                                     rules={[
                                                         {
                                                             required: true,
+                                                            message: 'Hãy nhập họ tên',
                                                         },
                                                     ]}
                                                 >
@@ -47,6 +74,7 @@ function CheckOutArea() {
                                                     rules={[
                                                         {
                                                             required: true,
+                                                            message: 'Hãy nhập địa chỉ',
                                                         },
                                                     ]}
                                                 >
@@ -60,6 +88,7 @@ function CheckOutArea() {
                                                     rules={[
                                                         {
                                                             required: true,
+                                                            message: 'Hãy nhập số điện thoại',
                                                         },
                                                     ]}
                                                 >
@@ -72,7 +101,7 @@ function CheckOutArea() {
                                                     name="email"
                                                     rules={[
                                                         {
-                                                            required: true,
+                                                            required: false,
                                                         },
                                                     ]}
                                                 >
@@ -116,10 +145,7 @@ function CheckOutArea() {
                                                         <span>
                                                             {cart.name} x {cart.quantity}
                                                         </span>
-                                                        <span>
-                                                            {cart.price * cart.quantity}{' '}
-                                                            VND
-                                                        </span>
+                                                        <span>{cart.price * cart.quantity} VND</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -133,9 +159,7 @@ function CheckOutArea() {
                                         <div className="your-order-total">
                                             <ul className="d-flex justify-content-between">
                                                 <li className="order-total">Tổng cộng</li>
-                                                <li className="order-total-price">
-                                                    {total} VND
-                                                </li>
+                                                <li className="order-total-price">{total} VND</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -145,7 +169,11 @@ function CheckOutArea() {
                                         </ButtonComponent>
                                     </div>
                                     <div>
-                                        <ButtonComponent primary2 className="mt-25">
+                                        <ButtonComponent
+                                            onClick={handleSubmit}
+                                            primary2
+                                            className="mt-25"
+                                        >
                                             THANH TOÁN ONLINE
                                         </ButtonComponent>
                                     </div>
@@ -167,9 +195,7 @@ function CheckOutArea() {
                                                     <Input size="large" />
                                                 </Form.Item>
                                             </Form>
-                                            <ButtonComponent primary2>
-                                                ÁP DỤNG
-                                            </ButtonComponent>
+                                            <ButtonComponent primary2>ÁP DỤNG</ButtonComponent>
                                         </div>
                                     </div>
                                 </div>
